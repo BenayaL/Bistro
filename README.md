@@ -35,9 +35,9 @@ This project demonstrates the design and implementation of a **client–server s
 
 Bistro follows a **Full Stack Client–Server Architecture**, including:
 
-**Frontend (Client)** - Java-based GUI for users and restaurant staff. Provides interactive access to reservations and reports.
-**Backend (Server)** - Handles business logic, data management, and communication between clients.
-**Database** - Relational (SQL-based) data storage for users, reservations, tables, and logs.
+- **Frontend (Client)** - Java-based GUI for users and restaurant staff. Provides interactive access to reservations and reports.
+- **Backend (Server)** - Handles business logic, data management, and communication between clients.
+- **Database** - Relational (SQL-based) data storage for users, reservations, tables, and logs.
 
 ---
 
