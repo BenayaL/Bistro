@@ -55,3 +55,4 @@ This project is intended for **educational use only** and is not licensed for co
 ### 📚 Course Information
 **Course:** Software Systems Engineering (61756)  
 **Institution:** Ort Braude Academic College  
+**Students programmers:** Benaya Leib,
