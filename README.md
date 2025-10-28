@@ -56,5 +56,10 @@ This project is intended for **educational use only** and is not licensed for co
 **Course:** Software Systems Engineering (61756)  
 **Institution:** Ort Braude Academic College 
 
+---
+
 ### 👨‍💻 Student Developers
+- Natan Niemetz
 - Benaya Leib: https://github.com/BenayaL
+- Uriel Pekelis
+- Itay Fisch
