@@ -62,4 +62,5 @@ This project is intended for **educational use only** and is not licensed for co
 - Natan Niemetz
 - Benaya Leib: https://github.com/BenayaL
 - Uriel Pekelis
-- Itay Fisch
+
+- Itay Fisch: github.com/ItayFisch
