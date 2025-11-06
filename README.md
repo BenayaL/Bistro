@@ -61,8 +61,9 @@ This project is intended for **educational use only** and is not licensed for co
 ### 👨‍💻 Student Developers
 - Natan Niemetz
 - Benaya Leib: https://github.com/BenayaL
-- Uriel Pekelis
+- Uriel Pekelis https://github.com/juligantos
 - Tomer Hananya https://github.com/tomerhan 
 - Itay Fisch: https://github.com/ItayFisch
+
 
 
