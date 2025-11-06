@@ -63,4 +63,5 @@ This project is intended for **educational use only** and is not licensed for co
 - Benaya Leib: https://github.com/BenayaL
 - Uriel Pekelis
 
-- Itay Fisch: github.com/ItayFisch
+- Itay Fisch: https://github.com/ItayFisch
+
