@@ -1,0 +1,35 @@
+/*this CSS file defines a black button style with hover and pressed effects.*/
+/*transparent button style*/
+.transparent-button {
+    -fx-background-color: black;
+    -fx-border-color: black;
+    -fx-border-width: 1;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+
+    /*round corners*/
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+
+    /*animation*/
+    -fx-transition: all 0.2s ease-in-out;
+}
+
+/*Hover*/
+.transparent-button:hover {
+    /* סימון עדין */
+    -fx-background-color: rgba(0, 0, 0, 0.452);
+}
+
+/* ============================================================
+   מצב לחיצה – כשהעכבר לוחץ פיזית
+   ============================================================ */
+.transparent-button:pressed {
+    /* סימון עמוק יותר להרגשה של "לחצתי" */
+    -fx-background-color: rgba(0, 0, 0, 0.18);
+    -fx-border-color: #000000;
+
+    /* אפקט קטן של "התכווצות" – מרגיש מקצועי */
+    -fx-scale-x: 0.96;
+    -fx-scale-y: 0.96;
+}
