@@ -21,6 +21,7 @@ public class EchoServer extends AbstractServer {
     	
     	return String.format("IP: %-15s | Name: %s", hostIP, hostName);
     }
+    
     // Method that handles proper client connection
     @Override
     protected void clientConnected(ConnectionToClient client) {
@@ -50,18 +51,22 @@ public class EchoServer extends AbstractServer {
     	//this following line is left here for use when testing or debugging with the console instead of the full GUI
     	//System.out.println("Client " + client.toString() + "crashed");
     	
-    	String disconnectionMSG = ("Client crashed from: " + getClientNameAndIP(client));
+    	String errorDetails = exception.getMessage();
+    	
+    	String disconnectionMSG = ("Client crashed from: " + getClientNameAndIP(client) + " with error: " +errorDetails);
     	Server_controller.appendConsoleMessage(disconnectionMSG);
+    	
+    	//Do we want to use this? should show the full "path" of issues if someone crashes
+    	exception.printStackTrace();
     }
     
+    //TODO change this method completely once we start working on the full project
     @Override
     protected void handleMessageFromClient(Object msg, ConnectionToClient client) {
     	//this following line is left here for use when testing or debugging with the console instead of the full GUI
         System.out.println("Message received: " + msg + " from " + client);
         
-        // TODO: Later, you will add your DB_Controller logic here 
-        // Example: Object result = DB_Controller.parseData(msg);
-        
+        // TODO add the DB_Controller logic here 
         // For now, just echo the message back to the client
         try {
             client.sendToClient("Server received: " + msg);
