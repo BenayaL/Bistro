@@ -25,6 +25,7 @@ public class ChatClient extends AbstractClient {
 	
 	
 	
+	
 	//Message from server:
 	/*
 	 * This method handles all data coming from the server.
@@ -48,6 +49,7 @@ public class ChatClient extends AbstractClient {
 		    {
 		    	//need to decide what to do here
 		    	e.printStackTrace();
+		    	clientCTRL.display("Could not send message to server.  Terminating client.");
 		    	quit();
 		    	
 		    }
