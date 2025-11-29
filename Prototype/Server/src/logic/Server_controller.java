@@ -1,7 +1,7 @@
 package logic;
 
 import java.io.IOException;
-import Server.EchoServer; // Make sure this import matches where you put EchoServer
+import Server.EchoServer;
 
 public class Server_controller {
     
@@ -10,7 +10,7 @@ public class Server_controller {
     
     /**
      * Starts the server on the given port.
-     * @param portStr The port number as a String (usually from a text field)
+     * @param portStr The port number as a String
      * @return true if started successfully, false otherwise
      */
     public static boolean runServer(String portStr) {
@@ -46,6 +46,18 @@ public class Server_controller {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        }
+    }
+    
+    
+    //Method to print messages from server-side onto the GUI
+    //currently has temp names for the "guiController" and the "updateConsole" (until guiController gets implemented)
+    public static void appendConsoleMessage(String message) {
+        // This following line is left here for debugging without the full GUI
+        //System.out.println(message); 
+        
+        if (guiController != null) {
+        	guiController.updateConsole(message);
         }
     }
 }
