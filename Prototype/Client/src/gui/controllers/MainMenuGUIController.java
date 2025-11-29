@@ -1,10 +1,13 @@
 package gui.controllers;
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 public class MainMenuGUI_Controller {
 
 }
 =======
+=======
+>>>>>>> Stashed changes
 
 import logic.ClientGUI;
 import logic.ChatClient;
@@ -56,5 +59,9 @@ public class MainMenuGUIController {
 
 
 	
+<<<<<<< Updated upstream
+}
+>>>>>>> Stashed changes
+=======
 }
 >>>>>>> Stashed changes
