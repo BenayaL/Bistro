@@ -1,15 +1,6 @@
 package gui.controllers;
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-public class MainMenuGUI_Controller {
-
-}
-=======
-=======
->>>>>>> Stashed changes
-
-import logic.ClientGUI;
+import logic.ClientGUIController;
 import logic.ChatClient;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -57,11 +48,4 @@ public class MainMenuGUIController {
 		alert.showAndWait();
 	}
 
-
-	
-<<<<<<< Updated upstream
 }
->>>>>>> Stashed changes
-=======
-}
->>>>>>> Stashed changes
