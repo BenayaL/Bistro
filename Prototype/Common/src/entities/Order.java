@@ -2,18 +2,27 @@ package entities;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.io.Serializable;
 
-public class Order {
+public class Order implements Serializable {
 
-    private int orderNumber;
+	private static final long serialVersionUID = -7312192944532984714L;
+	private int orderNumber;
     private int confimationCode;
     private LocalDate orderDate;
     private LocalTime orderTime;
     private int dinersAmount;
     
-    // Constructor:
-    public Order(int orderNumber, int confimationCode, LocalDate orderDate,
-					   LocalTime orderTime, int dinersAmount) {
+    /** 
+     * Constructor for Order class
+     * @param orderNumber the order number
+     * @param confimationCode the confirmation code
+     * @param orderDate the date of the order
+     * @param orderTime the time of the order
+     * @param dinersAmount the amount of diners
+     */
+    
+    public Order(int orderNumber, int confimationCode, LocalDate orderDate, LocalTime orderTime, int dinersAmount) {
 		this.orderNumber = orderNumber;
 		this.confimationCode = confimationCode;
 		this.orderDate = orderDate;
@@ -21,7 +30,7 @@ public class Order {
 		this.dinersAmount = dinersAmount;
     }
     
-    //Getters and Setters:
+    // Getters and Setters:
     public int getOrderID() {
 		return orderNumber;
 	}
