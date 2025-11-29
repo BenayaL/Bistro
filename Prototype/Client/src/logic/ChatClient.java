@@ -1,5 +1,6 @@
 package logic;
 
+import clientserver.ObjectType;
 import java.io.IOException;
 
 import ocsf.client.*;
@@ -32,8 +33,11 @@ public class ChatClient extends AbstractClient {
 	 * @param message The message from the server.*/
 	@Override
 	public void handleMessageFromServer(Object msg) {
+		
+		ObjectType receivedMsg = (ObjectType) msg;
+		
 		if(clientCTRL != null ) {
-			clientCTRL.handleMessageFromServer(msg);
+			clientCTRL.handleMessageFromServer(receivedMsg);
 		}
 	}
 	
