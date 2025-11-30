@@ -2,7 +2,7 @@ package clientserver;
 
 import java.io.Serializable;
 
-public class ObjectType implements Serializable {
+public class Message implements Serializable {
 
 	private static final long serialVersionUID = 6724999812338990274L;
 	private String id;
@@ -15,7 +15,7 @@ public class ObjectType implements Serializable {
 	 * @param data
 	 */
 	 
-	public ObjectType(String id, Object data)
+	public Message(String id, Object data)
 	{
 		this.id = id;
 		this.data = data;

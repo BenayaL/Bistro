@@ -1,6 +1,6 @@
 package logic;
 
-import clientserver.ObjectType;
+import clientserver.Message;
 import java.io.IOException;
 
 import ocsf.client.*;
