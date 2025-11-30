@@ -2,7 +2,6 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
@@ -23,7 +22,7 @@
    <left>
       <VBox prefHeight="588.0" prefWidth="122.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" styleClass="button-primary" stylesheets="@styles.css" text="Home">
+            <Button fx:id="HomeButton" mnemonicParsing="false" styleClass="button-primary" stylesheets="@styles.css" text="Home">
                <VBox.margin>
                   <Insets left="65.0" />
                </VBox.margin>
@@ -37,24 +36,25 @@
             <HBox alignment="CENTER" prefHeight="28.0" prefWidth="1025.0" spacing="20.0">
                <children>
                   <Label text="Confirmation code :" />
-                  <TextField prefHeight="25.0" prefWidth="239.0" />
+                  <TextField fx:id="txtConfirmCode" prefHeight="25.0" prefWidth="180.0" />
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="28.0" prefWidth="1025.0" spacing="20.0">
                <children>
-                  <Label text="Order Date:" />
-                  <DatePicker prefHeight="25.0" prefWidth="199.0" />
+                  <Label prefWidth="100.0" text=" Date:" />
+                  <DatePicker fx:id="Order" prefHeight="25.0" prefWidth="180.0" />
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="28.0" prefWidth="1025.0" spacing="20.0">
                <children>
                   <Label text="Number of guests:" />
-                  <ChoiceBox prefHeight="25.0" prefWidth="235.0" />
+                  <TextField fx:id="txtNumberOfGuests" prefHeight="25.0" prefWidth="180.0" />
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="28.0" prefWidth="1025.0" spacing="20.0">
                <children>
-                  <Button mnemonicParsing="false" styleClass="button-secondary" stylesheets="@styles.css" text="Update" />
+                  <Button fx:id="UpdateOrderButton" mnemonicParsing="false" prefHeight="27.0" prefWidth="65.0" styleClass="button-secondary" stylesheets="@styles.css" text="Update" />
+                  <Button fx:id="UpdateOrderButton1" mnemonicParsing="false" prefHeight="27.0" prefWidth="65.0" styleClass="button-secondary" stylesheets="@styles.css" text="Reset" />
                </children>
             </HBox>
          </children>

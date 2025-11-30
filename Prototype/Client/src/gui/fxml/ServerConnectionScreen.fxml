@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane minHeight="595.0" minWidth="864.0" prefHeight="595.0" prefWidth="864.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <VBox alignment="CENTER" prefHeight="334.0" prefWidth="1280.0" spacing="15.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER" prefHeight="28.0" prefWidth="1025.0" spacing="20.0">
+               <children>
+                  <Label prefHeight="17.0" prefWidth="41.0" text="Host IP:" />
+                  <TextField fx:id="txtIp" prefHeight="25.0" prefWidth="180.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="28.0" prefWidth="1025.0" spacing="20.0">
+               <children>
+                  <Label prefHeight="17.0" prefWidth="41.0" text="Port:" />
+                  <TextField fx:id="txtPort" prefHeight="25.0" prefWidth="180.0" />
+               </children>
+            </HBox>
+            <HBox alignment="TOP_CENTER" prefHeight="33.0" prefWidth="1280.0" spacing="30.0">
+               <children>
+                  <Button fx:id="SendButton" mnemonicParsing="false" styleClass="button-primary" stylesheets="@styles.css" text="Send" />
+                  <Button fx:id="ResetButton" mnemonicParsing="false" styleClass="button-primary" stylesheets="@styles.css" text="Reset" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </center>
+   <bottom>
+      <Label alignment="CENTER_RIGHT" text="© 2025 Bistro Management System – All rights reserved · v0.1 Prototype." BorderPane.alignment="CENTER_RIGHT" />
+   </bottom>
+   <top>
+      <ImageView fitHeight="177.0" fitWidth="177.0" BorderPane.alignment="TOP_LEFT">
+         <image>
+            <Image url="@bistro_transparent.png" />
+         </image>
+      </ImageView>
+   </top>
+</BorderPane>
