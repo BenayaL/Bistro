@@ -1,7 +1,5 @@
 package gui.controllers;
 
-import logic.ClientGUIController;
-import logic.ChatClient;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
