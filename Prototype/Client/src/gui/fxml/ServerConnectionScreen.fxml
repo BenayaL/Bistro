@@ -29,6 +29,7 @@
                <children>
                   <Button fx:id="SendButton" mnemonicParsing="false" styleClass="button-primary" stylesheets="@styles.css" text="Send" />
                   <Button fx:id="ResetButton" mnemonicParsing="false" styleClass="button-primary" stylesheets="@styles.css" text="Reset" />
+                  <Button fx:id="ExitButton" mnemonicParsing="false" onAction="#getExitBtn" styleClass="button-primary" stylesheets="@styles.css" text="Exit" />
                </children>
             </HBox>
          </children>
