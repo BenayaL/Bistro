@@ -15,7 +15,7 @@ public class BistroClientGUI extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		BistroClientGUI.client = new BistroClient("localhost", 5555);
+		client = new BistroClient("localhost", 5555);
 		try {
 			client.openConnection();
 		} catch (IOException e) {
