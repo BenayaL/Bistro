@@ -16,6 +16,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -23,7 +25,6 @@ import logic.BistroClient;
 import logic.BistroClientGUI;
 
 public class ServerConnectionFrameController {
-	
 	
 	@FXML
 	private Button btnExit = null;
@@ -37,9 +38,18 @@ public class ServerConnectionFrameController {
 	private TextField txtHost;
 	@FXML
 	private TextField txtPort;
+	@FXML
+	private ImageView logoImage; // ImageView for logo
 	
 	public ServerConnectionFrameController() {
 		super();
+	}
+	
+	/*
+	 * Method to load the logo image
+	 */
+	public void loadLogo() {
+		logoImage.setImage(new Image("/resources/bistroLogo.png"));
 	}
 	
 	public void btnSend(Event event){

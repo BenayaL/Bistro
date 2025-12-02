@@ -9,14 +9,14 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane minHeight="595.0" minWidth="864.0" prefHeight="595.0" prefWidth="864.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane minHeight="595.0" minWidth="864.0" prefHeight="595.0" prefWidth="864.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controllers.ServerConnectionFrameController">
    <center>
       <VBox alignment="CENTER" prefHeight="334.0" prefWidth="1280.0" spacing="15.0" BorderPane.alignment="CENTER">
          <children>
             <HBox alignment="CENTER" prefHeight="28.0" prefWidth="1025.0" spacing="20.0">
                <children>
                   <Label prefHeight="17.0" prefWidth="41.0" text="Host IP:" />
-                  <TextField fx:id="txtIp" prefHeight="25.0" prefWidth="180.0" />
+                  <TextField fx:id="txtHost" prefHeight="25.0" prefWidth="180.0" />
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="28.0" prefWidth="1025.0" spacing="20.0">
@@ -27,9 +27,9 @@
             </HBox>
             <HBox alignment="TOP_CENTER" prefHeight="33.0" prefWidth="1280.0" spacing="30.0">
                <children>
-                  <Button fx:id="SendButton" mnemonicParsing="false" styleClass="button-primary" stylesheets="@styles.css" text="Send" />
-                  <Button fx:id="ResetButton" mnemonicParsing="false" styleClass="button-primary" stylesheets="@styles.css" text="Reset" />
-                  <Button fx:id="ExitButton" mnemonicParsing="false" onAction="#getExitBtn" styleClass="button-primary" stylesheets="@styles.css" text="Exit" />
+                  <Button fx:id="btnSend" mnemonicParsing="false" styleClass="button-primary" stylesheets="@styles.css" text="Send" />
+                  <Button fx:id="btnReset" mnemonicParsing="false" styleClass="button-primary" stylesheets="@styles.css" text="Reset" />
+                  <Button fx:id="btnExit" mnemonicParsing="false" onAction="#exitBtn" styleClass="button-primary" stylesheets="@styles.css" text="Exit" />
                </children>
             </HBox>
          </children>
