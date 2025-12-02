@@ -70,7 +70,7 @@ public class HomeScreenController {
 			homeScreenController.loadLogo();
 			ServerConnectionFrameController.client.switchScreen(loader, root, event, "ViewOrders Screen");
 
-		} catch (Exception e) {
+		} catch (IOException e) {
 			// Handles connection errors.
 			System.out.println("Error: Can't load ViewOrders Screen");
 			BistroClientGUI.client.display(lblError, "Can't load Screen!", Color.RED); // Displays an error message.
