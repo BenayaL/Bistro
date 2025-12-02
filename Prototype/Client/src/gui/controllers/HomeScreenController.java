@@ -64,11 +64,11 @@ public class HomeScreenController {
 	 */
 	public void btnViewOrders(Event event) {
 		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui.fxml/" + "ViewOrdersScreen" + ".fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/fxml/" + "ViewOrdersScreen" + ".fxml"));
 			Parent root = loader.load();
 			HomeScreenController homeScreenController = loader.getController();
 			homeScreenController.loadLogo();
-			ServerConnectionFrameController.client.switchScreen(loader, root, event, "ViewOrders Screen");
+			BistroClientGUI.client.switchScreen(loader, root, event, "ViewOrders Screen");
 
 		} catch (Exception e) {
 			// Handles connection errors.
@@ -82,11 +82,11 @@ public class HomeScreenController {
 	 */
 	public void btnUpdateOrder(Event event) {
 		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui.fxml/" + "UpdateOrderScreen" + ".fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/fxml/" + "UpdateOrderScreen" + ".fxml"));
 			Parent root = loader.load();
 			HomeScreenController homeScreenController = loader.getController();
 			homeScreenController.loadLogo();
-			ServerConnectionFrameController.client.switchScreen(loader, root, event, "UpdateOrder Screen");
+			BistroClientGUI.client.switchScreen(loader, root, event, "UpdateOrder Screen");
 
 		} catch (IOException e) {
 			// Handles connection errors.
@@ -107,7 +107,7 @@ public class HomeScreenController {
 
 		// if the connection status window is not already loaded, load it
 		if (connectionStatusRoot == null) {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui.fxml/ConnectionStatusWindow.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/fxml/ConnectionStatusWindow.fxml"));
 			try {
 				connectionStatusRoot = loader.load();
 			} catch (IOException e) {

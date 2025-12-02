@@ -16,17 +16,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import logic.BistroClient;
+import logic.BistroClientGUI;
 
 public class ServerConnectionFrameController {
 	
-	// Static client instance for handling server communication.
-	public static BistroClient client;
 	
 	@FXML
 	private Button btnExit = null;
@@ -41,20 +38,9 @@ public class ServerConnectionFrameController {
 	@FXML
 	private TextField txtPort;
 	
-	@FXML
-	private ImageView logoImage; 
-	
 	public ServerConnectionFrameController() {
 		super();
 	}
-	
-	/*
-	 * Method to load the logo image
-	 */
-	public void loadLogo() {
-		logoImage.setImage(new Image("/images/bistroLogo.png"));
-	}
-	
 	
 	public void btnSend(Event event){
 		String ip; // holds the entered IP address
@@ -65,47 +51,49 @@ public class ServerConnectionFrameController {
 		
 		// Validate the input fields
 		if (ip.trim().isEmpty()) {
-			ServerConnectionFrameController.client.display(lblError, "You must enter an IP Address", Color.RED); // input is empty
+			BistroClientGUI.client.display(lblError, "You must enter an IP Address", Color.RED); // input is empty
 		}
 		else if (port.trim().isEmpty()) {
-			ServerConnectionFrameController.client.display(lblError,"You must enter a port", Color.RED); // input is empty
+			BistroClientGUI.client.display(lblError,"You must enter a port", Color.RED); // input is empty
 		}
 		else {
 			try {
 				intPort = Integer.parseInt(txtPort.getText()); // validates that the port only contains digits
 			} catch (Exception e) {
-				ServerConnectionFrameController.client.display(lblError,"Port must have only digits", Color.RED); // invalid port
+				BistroClientGUI.client.display(lblError,"Port must have only digits", Color.RED); // invalid port
 				return;
 			}
 			try {
 				// Attempts to create a client instance and connect to the server.
-				client = new BistroClient(ip, intPort);
+				BistroClientGUI.client = new BistroClient(ip, intPort);
+				
 				System.out.println("IP Entered Successfully");
 
 				// Load the home screen if the connection is successful.
-				FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui.fxml/"+ "HomeScreen" +".fxml"));
+				FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/fxml/"+ "HomeScreen" +".fxml"));
 				Parent root = loader.load();
 				HomeScreenController homeScreenController = loader.getController();
 				homeScreenController.loadLogo();
-				ServerConnectionFrameController.client.switchScreen(loader, root, event, "Home Screen");
+				BistroClientGUI.client.switchScreen(loader, root, event, "Home Screen");
 				
 			} catch (Exception e) {
-				// Handles connection errors.
-				System.out.println("Error: Can't setup connection! Terminating client.");
+				// Handles connection errors
+				System.out.println("Error: Can't setup connection! Terminating client. \nThe error message: " + e.getMessage());
 				display(lblError,"Can't setup connection", Color.RED); // Displays an error message.
 			}
 		}
 	}
+	
 	public void start(Stage primaryStage) {	
 		Parent root = null;
 		try {
-			root = FXMLLoader.load(getClass().getResource("/gui.fxml/ServerConnectionScreen.fxml"));
+			root = FXMLLoader.load(getClass().getResource("/gui/fxml/ServerConnectionScreen.fxml"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 				
 		Scene scene = new Scene(root);
-		scene.getStylesheets().add(getClass().getResource("/gui.css/styles.css").toExternalForm());
+		scene.getStylesheets().add(getClass().getResource("/gui/css/styles.css").toExternalForm());
 		primaryStage.setTitle("Server Connection");
 		primaryStage.setScene(scene);
 		primaryStage.show();		

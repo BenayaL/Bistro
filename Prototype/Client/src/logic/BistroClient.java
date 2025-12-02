@@ -33,7 +33,7 @@ public class BistroClient extends AbstractClient {
 		super(host, port);
 		try {
 			openConnection(); // Attempt to open a connection
-		} catch (IOException exception) {
+		} catch (IOException e) {
 			throw new Exception(); // Handle connection errors
 		}
 	}
