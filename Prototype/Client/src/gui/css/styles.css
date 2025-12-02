@@ -1,4 +1,25 @@
 
+/****************************************
+ **************** Pages *****************
+ ****************************************/
+
+/*connection status window*/
+.modal-pane {
+    -fx-background-color: #f0f0f0;
+    -fx-background-radius: 18;
+    -fx-border-radius: 18;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.35), 18, 0, 0, 0);
+}
+
+.modal-overlay {
+    -fx-background-color: rgba(0,0,0,0.45);
+    -fx-alignment: center;
+}
+
+.status-label-connected {
+    -fx-text-fill: #2ecc71;
+}
+
 /*************************************
     ==========COMPONENTS==========
 *************************************/

@@ -15,7 +15,7 @@
    <top>
       <ImageView fitHeight="212.0" fitWidth="212.0" BorderPane.alignment="TOP_LEFT">
          <image>
-            <Image url="@bistro_transparent.png" />
+            <Image url="@bistroLogo.png" />
          </image>
       </ImageView>
    </top>
