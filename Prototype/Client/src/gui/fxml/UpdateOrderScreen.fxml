@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="800.0" minWidth="1280.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="800.0" minWidth="1280.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controllers.UpdateOrderScreenController" stylesheets="@../css/styles.css">
    <top>
       <ImageView fitHeight="212.0" fitWidth="212.0" BorderPane.alignment="TOP_LEFT">
          <image>
@@ -22,7 +22,7 @@
    <left>
       <VBox prefHeight="588.0" prefWidth="122.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="HomeButton" mnemonicParsing="false" styleClass="button-primary" stylesheets="@styles.css" text="Home">
+            <Button fx:id="btnHome" mnemonicParsing="false" styleClass="button-primary" stylesheets="@styles.css" text="Home">
                <VBox.margin>
                   <Insets left="65.0" />
                </VBox.margin>
@@ -42,7 +42,7 @@
             <HBox alignment="CENTER" prefHeight="28.0" prefWidth="1025.0" spacing="20.0">
                <children>
                   <Label prefWidth="100.0" text=" Date:" />
-                  <DatePicker fx:id="Order" prefHeight="25.0" prefWidth="180.0" />
+                  <DatePicker fx:id="dpOrderDate" prefHeight="25.0" prefWidth="180.0" />
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="28.0" prefWidth="1025.0" spacing="20.0">
@@ -53,8 +53,8 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="28.0" prefWidth="1025.0" spacing="20.0">
                <children>
-                  <Button fx:id="UpdateOrderButton" mnemonicParsing="false" prefHeight="27.0" prefWidth="65.0" styleClass="button-secondary" stylesheets="@styles.css" text="Update" />
-                  <Button fx:id="UpdateOrderButton1" mnemonicParsing="false" prefHeight="27.0" prefWidth="65.0" styleClass="button-secondary" stylesheets="@styles.css" text="Reset" />
+                  <Button fx:id="btnUpdate" mnemonicParsing="false" prefHeight="27.0" prefWidth="65.0" styleClass="button-secondary"  text="Update" />
+                  <Button fx:id="btnReset" mnemonicParsing="false" prefHeight="27.0" prefWidth="65.0" styleClass="button-secondary"  text="Reset" />
                </children>
             </HBox>
          </children>
