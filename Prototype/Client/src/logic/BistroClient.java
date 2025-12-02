@@ -13,11 +13,22 @@ import java.io.IOException;
 
 import ocsf.client.*;
 
+/*
+ * This class represents a client that connects to a Bistro server.
+ */
+
 public class BistroClient extends AbstractClient {
 
 	public static Message messageFromServer;
 	public static boolean awaitResponse = false;
 
+	/*
+	 * Constructor to initialize the BistroClient with the server's host and port.
+	 * 
+	 * @param host The server's hostname or IP address.
+	 * @param port The server's port number.
+	 * @throws Exception If there is an error connecting to the server.
+	 */
 	public BistroClient(String host, int port) throws Exception {
 		super(host, port);
 		try {
@@ -26,13 +37,23 @@ public class BistroClient extends AbstractClient {
 			throw new Exception(); // Handle connection errors
 		}
 	}
-
+	
+	/*
+	 * Method to handle messages received from the server.
+	 * 
+	 * @param msg The message received from the server.
+	 */
 	@Override
 	protected void handleMessageFromServer(Object msg) {
 		BistroClient.messageFromServer = (Message) msg; // Update static message variable
 		awaitResponse = false; // Set response status to false
 	}
-
+	
+	/*
+	 * Method to handle messages sent from the client UI to the server.
+	 * 
+	 * @param message The message to be sent to the server.
+	 */
 	public void handleMessageFromClientUI(Object message) {
 		try {
 			awaitResponse = true; // Indicate that a response is awaited
@@ -51,7 +72,16 @@ public class BistroClient extends AbstractClient {
 			quit(); // Terminate the client
 		}
 	}
-
+	
+	
+	/*
+	 * Method to switch the current screen to a new screen.
+	 * 
+	 * @param loader The FXMLLoader for the new screen.
+	 * @param root The root node of the new screen.
+	 * @param event The event that triggered the screen switch.
+	 * @param string The title for the new screen.
+	 */
 	public void switchScreen(FXMLLoader loader, Parent root, Event event, String string) {
 		Stage currentStage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
 		Scene newScene = new Scene(root);
@@ -60,12 +90,22 @@ public class BistroClient extends AbstractClient {
 		currentStage.setScene(newScene);
 		currentStage.show();
 	}
-
+	
+	/*
+	 * Method to display an error message in a label with a specified color.
+	 * 
+	 * @param lblError The label to display the error message.
+	 * @param message The error message to be displayed.
+	 * @param color The color of the error message text.
+	 */
 	public void display(Label lblError, String message, Color color) {
 		lblError.setText(message); // Sets the error message in the label.
 		lblError.setTextFill(color); // Sets the text color for the error message.
 	}
-
+	
+	/*
+	 * Method to terminate the client and close the connection.
+	 */
 	public void quit() {
 		try {
 			closeConnection(); // Close the connection
