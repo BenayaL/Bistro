@@ -46,7 +46,7 @@ public class HomeScreenController {
 			Parent loadViewOrders= FXMLLoader.load(getClass().getResource("/gui/fxml/ViewOrderScreen.fxml"));
 			Scene viewOrdersScene = new Scene(loadViewOrders);
 			Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-			BistroClientGUI.client.swichScreen(loadViewOrders, viewOrdersScene, event, window);
+			BistroClientGUI.client.switchScreen(loadViewOrders, viewOrdersScene, event, window);
 		} catch (IOException e) {
 			e.printStackTrace();	
 		}
