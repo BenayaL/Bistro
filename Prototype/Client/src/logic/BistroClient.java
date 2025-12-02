@@ -73,7 +73,6 @@ public class BistroClient extends AbstractClient {
 		}
 	}
 	
-	
 	/*
 	 * Method to switch the current screen to a new screen.
 	 * 
@@ -85,7 +84,6 @@ public class BistroClient extends AbstractClient {
 	public void switchScreen(FXMLLoader loader, Parent root, Event event, String string) {
 		Stage currentStage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
 		Scene newScene = new Scene(root);
-		newScene.getStylesheets().add(getClass().getResource("/gui.css/styles.css").toExternalForm());
 		currentStage.setTitle(string);
 		currentStage.setScene(newScene);
 		currentStage.show();

@@ -27,11 +27,11 @@ import logic.BistroClientGUI;
 public class ServerConnectionFrameController {
 	
 	@FXML
-	private Button btnExit = null;
+	private Button btnExit;
 	@FXML
-	private Button btnSend = null;
+	private Button btnSend;
 	@FXML 
-	private Button btnReset = null;
+	private Button btnReset;
 	@FXML
 	private Label lblError;
 	@FXML
@@ -45,13 +45,7 @@ public class ServerConnectionFrameController {
 		super();
 	}
 	
-	/*
-	 * Method to load the logo image
-	 */
-	public void loadLogo() {
-		logoImage.setImage(new Image("/resources/bistroLogo.png"));
-	}
-	
+	@FXML
 	public void btnSend(Event event){
 		String ip; // holds the entered IP address
 		String port; // holds the entered Port
@@ -61,16 +55,16 @@ public class ServerConnectionFrameController {
 		
 		// Validate the input fields
 		if (ip.trim().isEmpty()) {
-			BistroClientGUI.client.display(lblError, "You must enter an IP Address", Color.RED); // input is empty
+			display(lblError, "You must enter an IP Address", Color.RED); // input is empty
 		}
 		else if (port.trim().isEmpty()) {
-			BistroClientGUI.client.display(lblError,"You must enter a port", Color.RED); // input is empty
+			display(lblError,"You must enter a port", Color.RED); // input is empty
 		}
 		else {
 			try {
 				intPort = Integer.parseInt(txtPort.getText()); // validates that the port only contains digits
 			} catch (Exception e) {
-				BistroClientGUI.client.display(lblError,"Port must have only digits", Color.RED); // invalid port
+				display(lblError,"Port must have only digits", Color.RED); // invalid port
 				return;
 			}
 			try {
@@ -82,16 +76,30 @@ public class ServerConnectionFrameController {
 				// Load the home screen if the connection is successful.
 				FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/fxml/"+ "HomeScreen" +".fxml"));
 				Parent root = loader.load();
-				HomeScreenController homeScreenController = loader.getController();
-				homeScreenController.loadLogo();
 				BistroClientGUI.client.switchScreen(loader, root, event, "Home Screen");
 				
 			} catch (Exception e) {
 				// Handles connection errors
-				System.out.println("Error: Can't setup connection! Terminating client. \nThe error message: " + e.getMessage());
+				System.out.println("Error: Can't setup connection! Terminating client. \nThe error message: ");
+				e.printStackTrace();
 				display(lblError,"Can't setup connection", Color.RED); // Displays an error message.
 			}
 		}
+	}
+	
+	@FXML
+	public void btnReset(Event event) {
+	    txtHost.clear();
+	    txtPort.clear();
+	    lblError.setText("");
+	}
+	
+	@FXML
+	public void btnExit(Event event) throws Exception {
+		System.out.println("Exit Bistro successfully");
+		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		stage.close();
+		System.exit(0);
 	}
 	
 	public void start(Stage primaryStage) {	
@@ -103,17 +111,9 @@ public class ServerConnectionFrameController {
 		}
 				
 		Scene scene = new Scene(root);
-		scene.getStylesheets().add(getClass().getResource("/gui/css/styles.css").toExternalForm());
 		primaryStage.setTitle("Server Connection");
 		primaryStage.setScene(scene);
 		primaryStage.show();		
-	}
-	
-	public void exitBtn(Event event) throws Exception {
-		System.out.println("Exit Bistro successfully");
-		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		stage.close();
-		System.exit(0);
 	}
 	
 	public void display(Label lblError, String message, Color color) {

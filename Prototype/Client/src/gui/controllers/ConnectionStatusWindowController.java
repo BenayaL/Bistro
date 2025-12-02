@@ -2,6 +2,7 @@ package gui.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
 
@@ -19,6 +20,9 @@ public class ConnectionStatusWindowController {
     @FXML
     private Label statusLabel; // Label to display connection status
     
+    @FXML
+    private Button closeBtn; // Button to close the window
+    
     /*
      * Sets the parent controller for this window.
      */
@@ -30,7 +34,7 @@ public class ConnectionStatusWindowController {
 	 * Handles the close button click event.
 	 */
     @FXML
-    private void onCloseClicked(ActionEvent event) {
+    private void closeConnectionStatus(ActionEvent event) {
         if (parent != null) {
             parent.closeConnectionStatus();
         }

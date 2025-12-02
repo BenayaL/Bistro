@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 
 
-<StackPane  fx:controller="gui.controllers.HomeScreenController" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" stylesheets="@../css/styles.css">
+<StackPane  fx:controller="gui.controllers.HomeScreenController" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" stylesheets="@/gui/css/styles.css">
    <children>
       <BorderPane minHeight="800.0" minWidth="1280.0">
          <center>
@@ -39,9 +39,9 @@
             </HBox>
          </bottom>
       </BorderPane>
-      <StackPane fx:id="modalOverlay" prefHeight="150.0" prefWidth="200.0" styleClass="modal-overlay" stylesheets="@styles.css" visible="false" managed="false">
+      <StackPane fx:id="modalOverlay" prefHeight="150.0" prefWidth="200.0" styleClass="modal-overlay" stylesheets="@/gui/css/styles.css" visible="false" managed="false">
             <children>
-                <fx:include source="ConnectionModal.fxml"/>
+                <fx:include source="ConnectionStatusWindow.fxml"/>
             </children>
         </StackPane>
   </children>
