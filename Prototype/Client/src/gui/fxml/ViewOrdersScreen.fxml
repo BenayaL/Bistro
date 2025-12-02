@@ -21,7 +21,7 @@
    <left>
       <AnchorPane prefHeight="600.0" prefWidth="190.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="HomeButton" layoutX="66.0" layoutY="14.0" mnemonicParsing="false" styleClass="button-primary" stylesheets="@styles.css" text="Home" />
+            <Button fx:id="HomeButton" layoutX="66.0" layoutY="14.0" mnemonicParsing="false" styleClass="button-primary" text="Home" />
          </children>
       </AnchorPane>
    </left>
@@ -29,7 +29,7 @@
       <Label alignment="CENTER" text="© 2025 Bistro Management System – All rights reserved · v0.1 Prototype." BorderPane.alignment="CENTER_RIGHT" />
    </bottom>
    <center>
-      <TableView fx:id="OrdersTable" onAction="#initializeTable" prefHeight="200.0" prefWidth="200.0" stylesheets="@styles.css" BorderPane.alignment="CENTER">
+      <TableView fx:id="OrdersTable" onAction="#initializeTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <columns>
           <TableColumn fx:id="orderNumberCol" maxWidth="1.7976931348623157E308" prefWidth="155.0" text="Order number" />
           <TableColumn fx:id="orderDateCol" prefWidth="149.0" text="Date" />

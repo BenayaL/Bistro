@@ -27,24 +27,27 @@ import logic.BistroClientGUI;
 public class ServerConnectionFrameController {
 	
 	@FXML
-	private Button btnExit;
+	private Button btnExit; // Exit button
 	@FXML
-	private Button btnSend;
+	private Button btnSend; // Send button
 	@FXML 
-	private Button btnReset;
+	private Button btnReset; // Reset button
 	@FXML
-	private Label lblError;
+	private Label lblError; // Label for displaying error messages
 	@FXML
-	private TextField txtHost;
+	private TextField txtHost; // TextField for entering the host IP address
 	@FXML
-	private TextField txtPort;
-	@FXML
-	private ImageView logoImage; // ImageView for logo
+	private TextField txtPort; // TextField for entering the port number
 	
+	// Constructor
 	public ServerConnectionFrameController() {
 		super();
 	}
 	
+	/*
+	 * Method to handle the Send button click event.
+	 * Validates the input fields and attempts to connect to the server.
+	 */
 	@FXML
 	public void btnSend(Event event){
 		String ip; // holds the entered IP address
@@ -87,6 +90,12 @@ public class ServerConnectionFrameController {
 		}
 	}
 	
+	/*
+	 * Method to handle the Reset button click event.
+	 * Clears the input fields and error messages.
+	 * 
+	 * @param event The event that triggered the method.
+	 */
 	@FXML
 	public void btnReset(Event event) {
 	    txtHost.clear();
@@ -94,6 +103,13 @@ public class ServerConnectionFrameController {
 	    lblError.setText("");
 	}
 	
+	/*
+	 * Method to handle the Exit button click event.
+	 * Closes the application.
+	 * 
+	 * @param event The event that triggered the method.
+	 * @throws Exception If there is an error during exit.
+	 */
 	@FXML
 	public void btnExit(Event event) throws Exception {
 		System.out.println("Exit Bistro successfully");
@@ -102,6 +118,11 @@ public class ServerConnectionFrameController {
 		System.exit(0);
 	}
 	
+	/*
+	 * Method to start the Server Connection screen.
+	 * 
+	 * @param primaryStage The primary stage for the application.
+	 */
 	public void start(Stage primaryStage) {	
 		Parent root = null;
 		try {
@@ -116,6 +137,13 @@ public class ServerConnectionFrameController {
 		primaryStage.show();		
 	}
 	
+	/*
+	 * Method to display an error message or messages in a label with a specified color.
+	 * 
+	 * @param lblError The label to display the error message / message .
+	 * @param message The error message to be displayed.
+	 * @param color The color of the error message text.
+	 */
 	public void display(Label lblError, String message, Color color) {
 		lblError.setText(message); // Sets the error message in the label
 		lblError.setTextFill(color); // Sets the text color for the error message
