@@ -51,25 +51,17 @@ public class HomeScreenController {
 	private Parent connectionStatusRoot; // Root node for connection status window
 
 	private ConnectionStatusWindowController connectionStatusCTRL; // Controller for connection status window
-
-	/*
-	 * Method to load the logo image
-	 */
-	public void loadLogo() {
-		logoImage.setImage(new Image("/images/bistroLogo.png"));
-	}
+	
 
 	/*
 	 * Method to handle View Orders button click and load the update order screen
 	 */
+	@FXML
 	public void btnViewOrders(Event event) {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/fxml/" + "ViewOrdersScreen" + ".fxml"));
 		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/fxml/" + "ViewOrdersScreen" + ".fxml"));
 			Parent root = loader.load();
-			HomeScreenController homeScreenController = loader.getController();
-			homeScreenController.loadLogo();
 			BistroClientGUI.client.switchScreen(loader, root, event, "ViewOrders Screen");
-
 		} catch (IOException e) {
 			// Handles connection errors.
 			System.out.println("Error: Can't load ViewOrders Screen");
@@ -80,14 +72,12 @@ public class HomeScreenController {
 	/*
 	 * Method to handle Update Order button click and load the update order screen
 	 */
+	@FXML
 	public void btnUpdateOrder(Event event) {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/fxml/" + "UpdateOrderScreen" + ".fxml"));
 		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/fxml/" + "UpdateOrderScreen" + ".fxml"));
 			Parent root = loader.load();
-			HomeScreenController homeScreenController = loader.getController();
-			homeScreenController.loadLogo();
 			BistroClientGUI.client.switchScreen(loader, root, event, "UpdateOrder Screen");
-
 		} catch (IOException e) {
 			// Handles connection errors.
 			System.out.println("Error: Can't load UpdateOrder Screen");
