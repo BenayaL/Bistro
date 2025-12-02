@@ -29,14 +29,14 @@
       <Label alignment="CENTER" text="© 2025 Bistro Management System – All rights reserved · v0.1 Prototype." BorderPane.alignment="CENTER_RIGHT" />
    </bottom>
    <center>
-      <TableView fx:id="OrdersTable" prefHeight="200.0" prefWidth="200.0" stylesheets="@styles.css" BorderPane.alignment="CENTER">
+      <TableView fx:id="OrdersTable" onAction="#initializeTable" prefHeight="200.0" prefWidth="200.0" stylesheets="@styles.css" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn fx:id="OrderNumberCol" maxWidth="1.7976931348623157E308" prefWidth="155.0" text="Order number" />
-          <TableColumn fx:id="DateCol" prefWidth="149.0" text="Date" />
-            <TableColumn fx:id="GuestsAmountCol" prefWidth="143.0" text="Guests amount" />
-            <TableColumn fx:id="OrderDateCol" prefWidth="155.0" text="Placing order date" />
-            <TableColumn fx:id="MemberIDCol" prefWidth="139.0" text="Member ID" />
-            <TableColumn fx:id="ConfirmCodeCol" prefWidth="248.0" text="Confirmation code" />
+          <TableColumn fx:id="orderNumberCol" maxWidth="1.7976931348623157E308" prefWidth="155.0" text="Order number" />
+          <TableColumn fx:id="orderDateCol" prefWidth="149.0" text="Date" />
+            <TableColumn fx:id="guestsAmountCol" prefWidth="143.0" text="Guests amount" />
+            <TableColumn fx:id="placingOrderDateCol" prefWidth="155.0" text="Placing order date" />
+            <TableColumn fx:id="memberIDCol" prefWidth="139.0" text="Member ID" />
+            <TableColumn fx:id="confirmCodeCol" prefWidth="248.0" text="Confirmation code" />
         </columns>
       </TableView>
    </center>

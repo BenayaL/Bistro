@@ -1,6 +1,7 @@
 package logic;
 
 import clientserver.Message;
+import entities.Order;
 import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -8,8 +9,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-
 import java.io.IOException;
+import java.util.List;
 
 import ocsf.client.*;
 
@@ -112,5 +113,14 @@ public class BistroClient extends AbstractClient {
 			System.out.println("Error: Could not close connection properly." + e);
 		}
 		System.exit(0); // Exit the program
+	}
+
+	public List<Order> getOrdersListFromServer() {
+		handleMessageFromClientUI(new Message("getOrdersList", null));
+		if (messageFromServer.getId().equals("ordersList")) {
+			List<Order> ordersList = (List<Order>) messageFromServer.getData();
+			return ordersList;
+		}
+		return null;
 	}
 }

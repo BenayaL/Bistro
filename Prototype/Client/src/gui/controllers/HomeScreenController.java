@@ -55,6 +55,8 @@ public class HomeScreenController {
 
 	/*
 	 * Method to handle View Orders button click and load the update order screen
+	 * 
+	 * @param event The action event triggered by clicking the button.
 	 */
 	@FXML
 	public void btnViewOrders(Event event) {
@@ -63,7 +65,6 @@ public class HomeScreenController {
 			Parent root = loader.load();
 			BistroClientGUI.client.switchScreen(loader, root, event, "ViewOrders Screen");
 		} catch (IOException e) {
-			// Handles connection errors.
 			System.out.println("Error: Can't load ViewOrders Screen");
 			BistroClientGUI.client.display(lblError, "Can't load Screen!", Color.RED); // Displays an error message.
 		}
@@ -71,6 +72,8 @@ public class HomeScreenController {
 
 	/*
 	 * Method to handle Update Order button click and load the update order screen
+	 * 
+	 * @param event The action event triggered by clicking the button.
 	 */
 	@FXML
 	public void btnUpdateOrder(Event event) {
@@ -79,7 +82,6 @@ public class HomeScreenController {
 			Parent root = loader.load();
 			BistroClientGUI.client.switchScreen(loader, root, event, "UpdateOrder Screen");
 		} catch (IOException e) {
-			// Handles connection errors.
 			System.out.println("Error: Can't load UpdateOrder Screen");
 			BistroClientGUI.client.display(lblError, "Can't load Screen!", Color.RED); // Displays an error message.
 		}
@@ -131,6 +133,8 @@ public class HomeScreenController {
 
 	/*
 	 * Method to handle Exit button click and terminate the client connection
+	 * 
+	 * @param event The action event triggered by clicking the button.
 	 */
 	public void btnExit(Event event) {
 		try {
