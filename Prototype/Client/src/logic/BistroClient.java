@@ -10,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import ocsf.client.*;
@@ -91,6 +92,31 @@ public class BistroClient extends AbstractClient {
 	}
 	
 	/*
+	 * Method to retrieve the list of orders from the server.
+	 * 
+	 * @return A list of Order objects retrieved from the server.
+	 */
+	public List<Order> getOrdersListFromServer() {
+		handleMessageFromClientUI(new Message("getOrdersList", null));
+		if (messageFromServer.getId().equals("ordersList")) {
+			List<Order> ordersList = (List<Order>) messageFromServer.getData();
+			return ordersList;
+		}
+		return null;
+	}
+	
+	/*
+	 * Method to send an order update request to the server.
+	 * 
+	 * @param orderUpdateData The data for updating the order.
+	 * @return The response ID from the server after processing the update request.
+	 */
+	public String sendOrderUpdateRequest(ArrayList<Object> orderUpdateData) {
+		handleMessageFromClientUI(new Message("updateOrderStatus",orderUpdateData));
+		return messageFromServer.getId();
+	}
+
+	/*
 	 * Method to display an error message in a label with a specified color.
 	 * 
 	 * @param lblError The label to display the error message.
@@ -115,12 +141,4 @@ public class BistroClient extends AbstractClient {
 		System.exit(0); // Exit the program
 	}
 
-	public List<Order> getOrdersListFromServer() {
-		handleMessageFromClientUI(new Message("getOrdersList", null));
-		if (messageFromServer.getId().equals("ordersList")) {
-			List<Order> ordersList = (List<Order>) messageFromServer.getData();
-			return ordersList;
-		}
-		return null;
-	}
 }
