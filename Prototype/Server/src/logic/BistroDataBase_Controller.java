@@ -102,5 +102,31 @@ public class BistroDataBase_Controller {
 	    	
 	    }
 	    
+	    public static void getAllOrders()
+	    {
+	    	String orderQuery = "SELECT * from orders";
+	    	 try (PreparedStatement pst = conn.prepareStatement(orderQuery))
+	    	 {
+	    		 try(ResultSet rs = pst.executeQuery())
+	    		 {
+	    			 while(rs.next())
+	    			 {
+	    				 int order_number =rs.getInt("order_number");
+	 	                 Date order_date = rs.getDate("order_date");
+	 	                 int number_of_guests = rs.getInt("number_of_guests");
+	 	                 int confirmation_code =rs.getInt("confirmation_code");
+	 	                 int member_id =rs.getInt("member_id");
+	 	                 Date date_of_placing_order = rs.getDate("date_of_placing_order");
+	 	                 
+	 	                 System.out.println(String.format("order numeber:{0}, order date: {1}, number of guests: {2}, confirmation code:{3}, member id:{4}, date of placing order:{5} "
+	 	                		 , order_number, order_date, number_of_guests, confirmation_code, member_id, date_of_placing_order));
+	    			 }
+	    		 }
+	    		    		 
+	    	 }	catch (SQLException ex) {
+	             System.out.println("SQLException in updateOrder: " + ex.getMessage());
+	         }
+	    }
+	    
 	    
 }
