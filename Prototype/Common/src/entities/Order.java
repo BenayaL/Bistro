@@ -3,35 +3,37 @@ package entities;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.io.Serializable;
+import java.sql.Date;
 
 public class Order implements Serializable {
 
 	private int orderNumber;
 	private int confimationCode;
-	private LocalDate orderDate;
-	private LocalDate placingOrderDate;
+	private Date orderDate;
+	private Date placingOrderDate;
 	private LocalTime orderTime;
 	private int dinersAmount;
 	private Member member;
+	
 
 	/**
 	 * Constructor for Order class
 	 * 
-	 * @param orderNumber     the order number
-	 * @param confimationCode the confirmation code
-	 * @param orderDate       the date of the order
-	 * @param orderTime       the time of the order
-	 * @param dinersAmount    the amount of diners
+	 * @param orderNumber      		the order number					
+	 * @param orderDate        		the date of the order			
+	 * @param dinersAmount     		the amount of diners in the order
+	 * @param confimationCode  		the order's confirmation code			
+	 * @param memberId         		the ID of the member who made the order
+	 * @param placingOrderDate 		the date of placing the order
 	 */
 
-	public Order(int orderNumber, int confimationCode, LocalDate orderDate, LocalTime orderTime, int dinersAmount,
-			Member member) {
+	public Order(int orderNumber, Date orderDate, int dinersAmount, int confimationCode, int memberId, Date placeingOrderDate) {
 		this.orderNumber = orderNumber;
-		this.confimationCode = confimationCode;
 		this.orderDate = orderDate;
-		this.orderTime = orderTime;
 		this.dinersAmount = dinersAmount;
-		this.member = member;
+		this.confimationCode = confimationCode;
+		this.member = new Member(memberId);
+		this.placingOrderDate = placeingOrderDate;
 	}
 
 	// Getters and Setters:
@@ -51,15 +53,15 @@ public class Order implements Serializable {
 		this.confimationCode = confimationCode;
 	}
 
-	public LocalDate getPlacingOrderDate() {
+	public Date getPlacingOrderDate() {
 		return placingOrderDate;
 	}
 
-	public LocalDate getOrderDate() {
+	public Date getOrderDate() {
 		return orderDate;
 	}
 
-	public void setOrderDate(LocalDate orderDate) {
+	public void setOrderDate(Date orderDate) {
 		this.orderDate = orderDate;
 	}
 
