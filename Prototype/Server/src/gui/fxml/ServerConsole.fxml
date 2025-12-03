@@ -42,7 +42,7 @@
    <left>
       <VBox prefHeight="306.0" prefWidth="106.0" spacing="20.0" BorderPane.alignment="CENTER">
          <children>
-               <Button fx:id="btnStart" onAction="#onStartServer" styleClass="button-secondary" text="Start Server" />
+               <Button fx:id="btnStart" onAction="#btnSend" styleClass="button-secondary" text="Start Server" />
                <Button fx:id="btnStop" onAction="#onStopServer" styleClass="button-primary" text="Stop Server" />
                <Button fx:id="btnClear" onAction="#onClearLog" styleClass="button-primary" text="Clear Log" />
          </children>
