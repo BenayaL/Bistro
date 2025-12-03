@@ -19,20 +19,21 @@ public class Order {
 	/**
 	 * Constructor for Order class
 	 * 
-	 * @param orderNumber     the order number
-	 * @param confimationCode the confirmation code
-	 * @param orderDate       the date of the order
-	 * @param orderTime       the time of the order
-	 * @param dinersAmount    the amount of diners
+	 * @param orderNumber      		the order number					
+	 * @param orderDate        		the date of the order			
+	 * @param dinersAmount     		the amount of diners in the order
+	 * @param confimationCode  		the order's confirmation code			
+	 * @param memberId         		the ID of the member who made the order
+	 * @param placingOrderDate 		the date of placing the order
 	 */
 
-	public Order(int orderNumber,Date orderDate, int dinersAmount, int confimationCode, int member_id, Date placeingorderdate) {
+	public Order(int orderNumber, Date orderDate, int dinersAmount, int confimationCode, int memberId, Date placeingOrderDate) {
 		this.orderNumber = orderNumber;
-		this.confimationCode = confimationCode;
 		this.orderDate = orderDate;
-		this.placingOrderDate = placeingorderdate;
 		this.dinersAmount = dinersAmount;
-		this.member = new Member(member_id);
+		this.confimationCode = confimationCode;
+		this.member = new Member(memberId);
+		this.placingOrderDate = placeingOrderDate;
 	}
 
 	// Getters and Setters:

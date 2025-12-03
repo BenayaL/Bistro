@@ -7,6 +7,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
 import entities.Order;
 
 
@@ -102,8 +105,9 @@ public class BistroDataBase_Controller {
 	    	
 	    }
 	    
-	    public static void getAllOrders()
+	    public static List<Order> getAllOrders()
 	    {
+	    	List<Order> allOrders = new ArrayList<>();
 	    	String orderQuery = "SELECT * from orders";
 	    	 try (PreparedStatement pst = conn.prepareStatement(orderQuery))
 	    	 {
@@ -118,13 +122,20 @@ public class BistroDataBase_Controller {
 	 	                 int member_id =rs.getInt("member_id");
 	 	                 Date date_of_placing_order = rs.getDate("date_of_placing_order");
 	 	                 
+	 	                 Order currentOrder = new Order(order_number, order_date, number_of_guests, confirmation_code, member_id, date_of_placing_order);
+	 	                 
+	 	                 allOrders.add(currentOrder);
+	 	                 //we're keeping this for debugging purposes and to make sure it sure this works as intended
 	 	                 System.out.println(String.format("order numeber:{0}, order date: {1}, number of guests: {2}, confirmation code:{3}, member id:{4}, date of placing order:{5} "
 	 	                		 , order_number, order_date, number_of_guests, confirmation_code, member_id, date_of_placing_order));
 	    			 }
 	    		 }
+	    		 return allOrders;
 	    		    		 
 	    	 }	catch (SQLException ex) {
-	             System.out.println("SQLException in updateOrder: " + ex.getMessage());
+	             System.out.println("SQLException in getAllOrders: " + ex.getMessage());
+	             ex.printStackTrace();
+	             return null;
 	         }
 	    }
 	    
