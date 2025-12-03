@@ -1,8 +1,11 @@
 package logic;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import clientserver.Message;
+import entities.Order;
 import gui.controllers.ServerConsoleController;
 import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
@@ -33,10 +36,12 @@ public class BistroServer extends AbstractServer {
 		switch(message)
 		{
 			case "getOrdersList":
-				BistroDataBase_Controller.getAllOrders();
+				List<Order> allOrders = new ArrayList<>();
+				allOrders = BistroDataBase_Controller.getAllOrders();
+				//BistroClient.handleMessageFromServer(allOrders);
 				return;
 			case "updateOrderStatus":
-				
+				//BistroDataBase_Controller.updateOrder(((Message) msg).getData());
 				return;
 			default:
 				
