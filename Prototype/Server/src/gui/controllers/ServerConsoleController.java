@@ -12,27 +12,33 @@ import logic.BistroServerGUI;
 public class ServerConsoleController {
 	
 	@FXML
-	private Button btnStart;
+	private Button btnStart; // Start server button
 	
 	@FXML
-	private Button btnStop;
+	private Button btnStop; // Stop server button
 	
 	@FXML
-	private Button btnClear;
+	private Button btnClear; // Clear console button
 	
 	@FXML
-	private Button btnSend;
+	private Button btnSend; // Send command button
 	
 	@FXML
-	private Label lblError;
+	private Label lblError; // Error message label
 	
 	@FXML
-	private TextArea txtLog;
+	private TextArea txtLog; // Console log area
 	
 	@FXML
-	private TextField txtCommand;
+	private TextField txtCommand; // Command input field
 	
 	
+	/*
+	 * Method to handle the Start button click event.
+	 * Starts the Bistro server and begins listening for client connections.
+	 * 
+	 * @param event The event that triggered the button click.
+	 */
 	@FXML
 	public void btnStart(Event event) {
 		displayMessageToConsole("Starting server...");
@@ -51,6 +57,12 @@ public class ServerConsoleController {
 		}
 	}
 	
+	/*
+	 * Method to handle the Stop button click event.
+	 * Stops the Bistro server and disconnects all clients.
+	 * 
+	 * @param event The event that triggered the button click.
+	 */
 	@FXML
 	public void btnStop(Event event) {
 		displayMessageToConsole("Stopping server...");
@@ -62,18 +74,57 @@ public class ServerConsoleController {
 		}
 	}
 	
+	/*
+	 * Method to handle the Clear button click event.
+	 * Clears the console log area.
+	 * 
+	 * @param event The event that triggered the button click.
+	 */
 	@FXML
 	public void btnClear(Event event) {
 		txtLog.clear();
 	}
 	
+	/*
+	 * Method to handle the Send button click event.
+	 * Processes commands entered in the command input field.
+	 * 
+	 * @param event The event that triggered the button click.
+	 */
+	@FXML
+	public void btnSend(Event event) {
+		String cmd= txtCommand.getText();
+		switch(cmd.trim().toLowerCase()) {
+		case "/start":
+			btnStart(event);
+			break;
+		case "/stop":
+			btnStop(event);
+			break;
+		case "/clear":
+			btnClear(event);
+			break;
+		case "/connections":
+			BistroServerGUI.server.showAllConnections();
+			break;
+		case "/help":
+			displayMessageToConsole("Available commands:\n/start - Start the server\n/stop - Stop the server\n/clear - Clear the console log\n/connections - Show all active client connections\n/help - Show this help message");
+			break;
+		case "":
+			displayMessageToConsole("No command entered. Type /help for a list of available commands.");
+			break;
+		default:
+			displayMessageToConsole("Unknown command: " + cmd + ". Type /help for a list of available commands.");
+			break;
+		}	
+	}
+
+	/*
+	 * Method to display a message in the console log area.
+	 * 
+	 * @param message The message to be displayed.
+	 */
 	public void displayMessageToConsole(String message) {
 		txtLog.appendText(">"+ message + "\n");
 	}
-	
-	
-	
-	
-	
-	
 }

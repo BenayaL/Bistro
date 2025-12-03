@@ -20,7 +20,7 @@
       </ImageView>
    </top>
    <bottom>
-      <Button fx:id="btnExit" mnemonicParsing="false" onAction="#getExitBtn" styleClass="button-primary" text="Exit" BorderPane.alignment="BOTTOM_RIGHT">
+      <Button fx:id="btnExit" mnemonicParsing="false" onAction="#btnExit" styleClass="button-primary" text="Exit" BorderPane.alignment="BOTTOM_RIGHT">
          <BorderPane.margin>
             <Insets bottom="2.0" right="2.0" />
          </BorderPane.margin>
@@ -35,7 +35,7 @@
                   <TextField fx:id="txtPort" />
                </children>
             </HBox>
-            <Button fx:id="btnDone" mnemonicParsing="false" onAction="#Done" styleClass="button-secondary" text="Done" />
+            <Button fx:id="btnDone" mnemonicParsing="false" onAction="#btnDone" styleClass="button-secondary" text="Done" />
          </children>
       </VBox>
    </center>

@@ -19,18 +19,22 @@ public class ServerPortFrameController {
 	final public static int DEFAULT_PORT = 5555;
 	
 	@FXML
-	private Button btnDone;
+	private Button btnDone; // Done button to confirm port entry
 	
 	@FXML
-	private Button btnExit;
+	private Button btnExit; // Exit button to close the application
 	
 	@FXML
-	private Label lblError;
+	private Label lblError; // Label to display error messages
 	
 	@FXML
-	private TextField txtPort;
+	private TextField txtPort; // TextField for entering the port number
 	
 	
+	/*
+	 * Method to handle the Done button click event.
+	 * Validates the entered port number and proceeds if correct.
+	 */
 	@FXML
 	public void btnDone(Event event) {
 		String port = txtPort.getText();
@@ -58,11 +62,27 @@ public class ServerPortFrameController {
 					e.printStackTrace();
 			}
 		}
-	}	
+	}
 	
 	
+	/*
+	 * Method to handle the Exit button click event.
+	 * Closes the application.
+	 */
+	@FXML
+	public void btnExit(Event event) {
+		Stage stage = (Stage) btnExit.getScene().getWindow();
+		stage.close();
+	}
+	
+	/*
+	 * Method to start the Server Port Frame.
+	 * Sets up the stage and scene for the port selection interface.
+	 * 
+	 * @param primaryStage The primary stage for this application.
+	 */
 	public void start(Stage primaryStage) {
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/fxml/ServerPortFrame.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/fxml/ServerPort.fxml"));
 		try {
 			primaryStage.setTitle("Bistro Server - Port Selection");
 			primaryStage.setScene(new Scene(loader.load()));
