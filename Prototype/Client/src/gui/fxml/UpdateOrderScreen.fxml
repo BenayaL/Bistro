@@ -31,35 +31,55 @@
       </VBox>
    </left>
    <center>
-      <VBox prefHeight="157.0" prefWidth="624.0" spacing="15.0" BorderPane.alignment="CENTER">
-         <children>
+    <VBox prefHeight="157.0" prefWidth="624.0" spacing="15.0" BorderPane.alignment="CENTER">
+        <children>
+
             <HBox alignment="CENTER" prefHeight="28.0" prefWidth="1025.0" spacing="20.0">
-               <children>
-                  <Label text="Confirmation code :" />
-                  <TextField fx:id="txtConfirmCode" prefHeight="25.0" prefWidth="180.0" />
-               </children>
+                <children>
+                    <Label text="Confirmation code :" />
+                    <TextField fx:id="txtConfirmCode" prefHeight="25.0" prefWidth="180.0" />
+                </children>
             </HBox>
+
             <HBox alignment="CENTER" prefHeight="28.0" prefWidth="1025.0" spacing="20.0">
-               <children>
-                  <Label prefWidth="100.0" text=" Date:" />
-                  <DatePicker fx:id="dpOrderDate" prefHeight="25.0" prefWidth="180.0" />
-               </children>
+                <children>
+                    <Label prefWidth="100.0" text=" Date:" />
+                    <DatePicker fx:id="dpOrderDate" prefHeight="25.0" prefWidth="180.0" />
+                </children>
             </HBox>
+
             <HBox alignment="CENTER" prefHeight="28.0" prefWidth="1025.0" spacing="20.0">
-               <children>
-                  <Label text="Number of guests:" />
-                  <TextField fx:id="txtNumberOfGuests" prefHeight="25.0" prefWidth="180.0" />
-               </children>
+                <children>
+                    <Label text="Number of guests:" />
+                    <TextField fx:id="txtNumberOfGuests" prefHeight="25.0" prefWidth="180.0" />
+                </children>
             </HBox>
+
             <HBox alignment="CENTER" prefHeight="28.0" prefWidth="1025.0" spacing="20.0">
-               <children>
-                  <Button fx:id="btnUpdate" onAction= "#btnUpdate" mnemonicParsing="false" prefHeight="27.0" prefWidth="65.0" styleClass="button-secondary"  text="Update" />
-                  <Button fx:id="btnReset" onAction= "#btnReset" mnemonicParsing="false" prefHeight="27.0" prefWidth="65.0" styleClass="button-secondary"  text="Reset" />
-               </children>
+                <children>
+                    <Button fx:id="btnUpdate" onAction="#btnUpdate"
+                            prefHeight="27.0" prefWidth="65.0"
+                            styleClass="button-secondary"
+                            text="Update" />
+                    <Button fx:id="btnReset" onAction="#btnReset"
+                            prefHeight="27.0" prefWidth="65.0"
+                            styleClass="button-secondary"
+                            text="Reset" />
+                </children>
             </HBox>
-         </children>
-      </VBox>
-   </center>
+
+            <HBox alignment="CENTER">
+                <children>
+                    <Label fx:id="lblError"
+                           text=""
+                           style="-fx-text-fill: red; -fx-font-weight: bold;" />
+                </children>
+            </HBox>
+
+        </children>
+    </VBox>
+</center>
+
    <bottom>
       <Label text="© 2025 Bistro Management System – All rights reserved · v0.1 Prototype." BorderPane.alignment="TOP_RIGHT" />
    </bottom>

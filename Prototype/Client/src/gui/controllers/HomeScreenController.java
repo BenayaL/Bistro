@@ -17,6 +17,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import logic.BistroClientGUI;
 import clientserver.Message;
@@ -47,6 +48,9 @@ public class HomeScreenController {
 
 	@FXML
 	private StackPane modalOverlay; // Overlay pane for modals
+	
+	@FXML
+	private Rectangle overlayBackground;
 
 	private Parent connectionStatusRoot; // Root node for connection status window
 
@@ -81,7 +85,11 @@ public class HomeScreenController {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/fxml/" + "UpdateOrderScreen" + ".fxml"));
 		try {
 			Parent root = loader.load();
+			Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+			
 			BistroClientGUI.client.switchScreen(loader, root, event, "UpdateOrder Screen");
+			stage.centerOnScreen();
+			
 		} catch (IOException e) {
 			System.out.println("Error: Can't load UpdateOrder Screen");
 			BistroClientGUI.client.display(lblError, "Can't load Screen!", Color.RED); // Displays an error message.

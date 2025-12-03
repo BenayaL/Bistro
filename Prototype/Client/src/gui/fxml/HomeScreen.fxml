@@ -9,61 +9,74 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
+<StackPane fx:controller="gui.controllers.HomeScreenController"
+           xmlns="http://javafx.com/javafx/25"
+           xmlns:fx="http://javafx.com/fxml/1"
+           stylesheets="@/gui/css/styles.css">
 
-<StackPane fx:controller="gui.controllers.HomeScreenController" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" stylesheets="@/gui/css/styles.css">
-   <children>
-      <BorderPane minHeight="360.0" minWidth="470.0">
-         <center>
-            <VBox alignment="CENTER" prefHeight="783.0" prefWidth="1085.0">
-               <children>
-                  <ImageView fitHeight="336.0" fitWidth="336.0">
-                     <image>
-                        <Image url="@/resources/bistroLogo.png" />
-                     </image>
-                  </ImageView>
-                  <HBox alignment="TOP_CENTER" prefHeight="128.0" prefWidth="1156.0" spacing="30.0">
-                     <children>
-                        <Button fx:id="btnViewOrders"  onAction="#btnViewOrders" mnemonicParsing="false" styleClass="button-primary" text="View Orders" />
-                        <Button fx:id="btnUpdateOrder"  onAction="#btnUpdateOrder" mnemonicParsing="false" styleClass="button-primary" text="Update Order" />
-                     </children>
-                  </HBox>
-               </children>
-            </VBox>
-         </center>
-         <bottom>
-   <VBox spacing="5.0" BorderPane.alignment="CENTER">
-      <children>
+    <children>
+        <BorderPane fx:id="mainPane" minHeight="360.0" minWidth="470.0">
+            <center>
+                <VBox alignment="CENTER" prefHeight="783.0" prefWidth="1085.0">
+                    <children>
 
-         <HBox alignment="CENTER" spacing="700.0">
-            <children>
-               <Button fx:id="btnConnectionStatus"
-                       onAction="#btnConnectionStatus"
-                       alignment="CENTER"
-                       mnemonicParsing="false"
-                       prefHeight="29.0"
-                       prefWidth="124.0"
-                       styleClass="button-primary"
-                       text="Connection Status" />
-               <Label alignment="BOTTOM_RIGHT"
-                      text="© 2025 Bistro Management System – All rights reserved · v0.1 Prototype." />
-            </children>
-         </HBox>
+                        <ImageView fitHeight="336.0" fitWidth="336.0">
+                            <image>
+                                <Image url="@/resources/bistroLogo.png" />
+                            </image>
+                        </ImageView>
 
-         <Label fx:id="lblError"
-                alignment="CENTER"
-                text=""
-                textFill="RED"
-                prefWidth="400.0" />
+                        <HBox alignment="TOP_CENTER" prefHeight="128.0" prefWidth="1156.0" spacing="30.0">
+                            <children>
+                                <Button fx:id="btnViewOrders"
+                                        onAction="#btnViewOrders"
+                                        mnemonicParsing="false"
+                                        styleClass="button-primary"
+                                        text="View Orders" />
+                                <Button fx:id="btnUpdateOrder"
+                                        onAction="#btnUpdateOrder"
+                                        mnemonicParsing="false"
+                                        styleClass="button-primary"
+                                        text="Update Order" />
+                            </children>
+                        </HBox>
 
-      </children>
-   </VBox>
-</bottom>
+                    </children>
+                </VBox>
+            </center>
 
-      </BorderPane>
-      <StackPane fx:id="modalOverlay" prefHeight="150.0" prefWidth="200.0" styleClass="modal-overlay" stylesheets="@/gui/css/styles.css" visible="false" managed="false">
-            <children>
-                <fx:include source="ConnectionStatusWindow.fxml"/>
-            </children>
+            <bottom>
+                <VBox spacing="5.0" BorderPane.alignment="CENTER">
+                    <children>
+
+                        <HBox alignment="CENTER" spacing="700.0">
+                            <children>
+                                <Button fx:id="btnConnectionStatus"
+                                        onAction="#btnConnectionStatus"
+                                        alignment="CENTER"
+                                        mnemonicParsing="false"
+                                        prefHeight="29.0"
+                                        prefWidth="124.0"
+                                        styleClass="button-primary"
+                                        text="Connection Status" />
+                                <Label alignment="BOTTOM_RIGHT"
+                                       text="© 2025 Bistro Management System – All rights reserved · v0.1 Prototype." />
+                            </children>
+                        </HBox>
+
+                        <Label fx:id="lblError"
+                               alignment="CENTER"
+                               text=""
+                               textFill="RED"
+                               prefWidth="400.0" />
+                    </children>
+                </VBox>
+            </bottom>
+        </BorderPane>
+        <StackPane fx:id="modalOverlay"
+                   visible="false"
+                   managed="false"
+                   style="-fx-alignment: center;">
         </StackPane>
-  </children>
+    </children>
 </StackPane>
