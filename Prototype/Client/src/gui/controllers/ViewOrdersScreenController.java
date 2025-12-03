@@ -32,10 +32,10 @@ public class ViewOrdersScreenController {
 	private TableView<Order> ordersTableView; // TableView to display orders
 	
 	@FXML
-	private TableColumn<Order,Integer> orderNumberCol; // Column for order numbers
+	private TableColumn<Order, Integer> orderNumberCol; // Column for order numbers
 	
 	@FXML
-	private TableColumn<Order,LocalDate> orderDateCol; // Column for order dates
+	private TableColumn<Order, LocalDate> orderDateCol; // Column for order dates
 	
 	@FXML
 	private TableColumn<Order, Integer> guestsAmountCol; // Column for number of guests
