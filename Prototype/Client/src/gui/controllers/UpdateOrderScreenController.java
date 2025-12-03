@@ -75,7 +75,7 @@ public class UpdateOrderScreenController {
 		}catch (NumberFormatException e) {
 			lblError.setText("Confirmation code must be a number.");
 			return;
-		}
+		} 
 		try {
 			numberOfGuests = Integer.parseInt(txtNumberOfGuests.getText());
 			}catch (NumberFormatException e) {
@@ -91,18 +91,18 @@ public class UpdateOrderScreenController {
 		switch (BistroClientGUI.client.sendOrderUpdateRequest(orderUpdateData)) {
 		case "updateOrderSuccess":
 			System.out.println("Order updated successfully on server.");
-			BistroClientGUI.client.display(lblError, "Order updated successfully.", javafx.scene.paint.Color.GREEN);
+			BistroClientGUI.client.display(lblError, "Order updated successfully.", Color.GREEN);
 			break;
-		case "Date not available":
+		case "dateNotAvailable":
 			System.out.println("The specified date is not available.");
-			BistroClientGUI.client.display(lblError, "The specified date is not available.", javafx.scene.paint.Color.RED);
+			BistroClientGUI.client.display(lblError, "The specified date is not available.", Color.RED);
 		case "invalidConfirmCode":
 			System.out.println("Invalid confirmation code provided.");
-			BistroClientGUI.client.display(lblError, "Invalid confirmation code.", javafx.scene.paint.Color.RED);
+			BistroClientGUI.client.display(lblError, "Invalid confirmation code.", Color.RED);
 			break;
 		default:
 			System.out.println("Unexpected response from server.");
-			BistroClientGUI.client.display(lblError, "Unexpected error occurred.", javafx.scene.paint.Color.RED);
+			BistroClientGUI.client.display(lblError, "Unexpected error occurred.", Color.RED);
 			break;
 		}
 	}

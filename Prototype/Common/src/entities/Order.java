@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.io.Serializable;
 
-public class Order {
+public class Order implements Serializable {
 
 	private int orderNumber;
 	private int confimationCode;
@@ -31,6 +31,7 @@ public class Order {
 		this.orderDate = orderDate;
 		this.orderTime = orderTime;
 		this.dinersAmount = dinersAmount;
+		this.member = member;
 	}
 
 	// Getters and Setters:

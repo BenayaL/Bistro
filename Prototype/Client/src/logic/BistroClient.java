@@ -32,12 +32,12 @@ public class BistroClient extends AbstractClient {
 	 * @throws Exception If there is an error connecting to the server.
 	 */
 	public BistroClient(String host, int port) throws Exception {
-		super(host, port);
-		try {
-			openConnection(); // Attempt to open a connection
-		} catch (IOException e) {
-			throw new Exception(); // Handle connection errors
-		}
+	    super(host, port);
+	    try {
+	        openConnection(); // Attempt to open a connection
+	    } catch (IOException e) {
+	        throw new Exception("Could not connect to server at " + host + ":" + port, e);
+	    }
 	}
 	
 	/*
@@ -96,11 +96,13 @@ public class BistroClient extends AbstractClient {
 	 * 
 	 * @return A list of Order objects retrieved from the server.
 	 */
+	
+	@SuppressWarnings("unchecked")
 	public List<Order> getOrdersListFromServer() {
-		handleMessageFromClientUI(new Message("getOrdersList", null));
-		if (messageFromServer.getId().equals("ordersList")) {
-			List<Order> ordersList = (List<Order>) messageFromServer.getData();
-			return ordersList;
+		messageFromServer = new Message("getOrdersList", null);
+		handleMessageFromClientUI(messageFromServer);
+		if ("ordersList".equals(messageFromServer.getId())) {
+	        return (List<Order>) messageFromServer.getData();
 		}
 		return null;
 	}

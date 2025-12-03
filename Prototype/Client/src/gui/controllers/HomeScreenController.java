@@ -65,7 +65,8 @@ public class HomeScreenController {
 			Parent root = loader.load();
 			BistroClientGUI.client.switchScreen(loader, root, event, "ViewOrders Screen");
 		} catch (IOException e) {
-			System.out.println("Error: Can't load ViewOrders Screen");
+			System.out.println("Error: Can't load ViewOrders Screen: ");
+			e.printStackTrace();
 			BistroClientGUI.client.display(lblError, "Can't load Screen!", Color.RED); // Displays an error message.
 		}
 	}
