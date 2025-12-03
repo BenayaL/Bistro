@@ -38,7 +38,6 @@ public class BistroClientGUI extends Application {
 		connectionFrame.start(primaryStage); // Start the connection frame
 	}
 	
-	
 	public void display(Label lblError, String message, Color color) {
 		lblError.setText(message); // Sets the error message in the label
 		lblError.setTextFill(color); // Sets the text color for the error message

@@ -79,13 +79,17 @@ public class ServerConnectionFrameController {
 				// Load the home screen if the connection is successful.
 				FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/fxml/"+ "HomeScreen" +".fxml"));
 				Parent root = loader.load();
+				Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
 				BistroClientGUI.client.switchScreen(loader, root, event, "Home Screen");
+				stage.centerOnScreen();
+				
 				
 			} catch (Exception e) {
 				// Handles connection errors
-				System.out.println("Error: Can't setup connection! Terminating client. \nThe error message: ");
+				System.out.println("Error: Can't setup connection! \nThe error message: ");
 				e.printStackTrace();
 				display(lblError,"Can't setup connection", Color.RED); // Displays an error message.
+				
 			}
 		}
 	}
@@ -134,6 +138,7 @@ public class ServerConnectionFrameController {
 		Scene scene = new Scene(root);
 		primaryStage.setTitle("Server Connection");
 		primaryStage.setScene(scene);
+		primaryStage.centerOnScreen();
 		primaryStage.show();		
 	}
 	

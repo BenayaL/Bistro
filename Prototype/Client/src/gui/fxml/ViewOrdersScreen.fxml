@@ -10,37 +10,83 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane minHeight="800.0" minWidth="1280.0" fx:controller="gui.controllers.ViewOrderScreenController" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" stylesheets="@../css/styles.css">>
+<BorderPane minHeight="800.0" minWidth="1280.0"
+            fx:controller="gui.controllers.ViewOrdersScreenController"
+            xmlns="http://javafx.com/javafx/25"
+            xmlns:fx="http://javafx.com/fxml/1"
+            stylesheets="@/gui/css/styles.css">
+
    <top>
       <ImageView fitHeight="200.0" fitWidth="200.0" BorderPane.alignment="TOP_LEFT">
          <image>
-            <Image url="@bistro_transparent.png" />
+            <Image url="@/resources/bistroLogo.png" />
          </image>
       </ImageView>
    </top>
+
    <left>
       <AnchorPane prefHeight="600.0" prefWidth="190.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="HomeButton" layoutX="66.0" layoutY="14.0" mnemonicParsing="false" styleClass="button-primary" text="Home" />
+            <Button fx:id="btnHome"
+                    layoutX="66.0"
+                    layoutY="14.0"
+                    mnemonicParsing="false"
+                    styleClass="button-primary"
+                    stylesheets="@styles.css"
+                    text="Home" />
          </children>
       </AnchorPane>
    </left>
-   <bottom>
-      <Label alignment="CENTER" text="© 2025 Bistro Management System – All rights reserved · v0.1 Prototype." BorderPane.alignment="CENTER_RIGHT" />
-   </bottom>
+
    <center>
-      <TableView fx:id="OrdersTable" onAction="#initializeTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-        <columns>
-          <TableColumn fx:id="orderNumberCol" maxWidth="1.7976931348623157E308" prefWidth="155.0" text="Order number" />
-          <TableColumn fx:id="orderDateCol" prefWidth="149.0" text="Date" />
-            <TableColumn fx:id="guestsAmountCol" prefWidth="143.0" text="Guests amount" />
-            <TableColumn fx:id="placingOrderDateCol" prefWidth="155.0" text="Placing order date" />
-            <TableColumn fx:id="memberIDCol" prefWidth="139.0" text="Member ID" />
-            <TableColumn fx:id="confirmCodeCol" prefWidth="248.0" text="Confirmation code" />
-        </columns>
-      </TableView>
+      <VBox spacing="10" BorderPane.alignment="CENTER">
+         <children>
+
+            <TableView fx:id="ordersTableView"
+                       prefHeight="200.0"
+                       prefWidth="200.0"
+                       stylesheets="@styles.css">
+               <columns>
+                  <TableColumn fx:id="orderNumberCol"
+                               maxWidth="1.7976931348623157E308"
+                               prefWidth="155.0"
+                               text="Order number" />
+                  <TableColumn fx:id="orderDateCol"
+                               prefWidth="149.0"
+                               text="Date" />
+                  <TableColumn fx:id="guestsAmountCol"
+                               prefWidth="143.0"
+                               text="Guests amount" />
+                  <TableColumn fx:id="placingOrderDateCol"
+                               prefWidth="155.0"
+                               text="Placing order date" />
+                  <TableColumn fx:id="memberIDCol"
+                               prefWidth="139.0"
+                               text="Member ID" />
+                  <TableColumn fx:id="confirmCodeCol"
+                               prefWidth="248.0"
+                               text="Confirmation code" />
+               </columns>
+            </TableView>
+
+            <Label fx:id="lblError"
+                   alignment="CENTER"
+                   text=""
+                   textFill="RED"
+                   prefWidth="400.0" />
+
+         </children>
+      </VBox>
    </center>
+
+   <bottom>
+      <Label alignment="CENTER"
+             text="© 2025 Bistro Management System – All rights reserved · v0.1 Prototype."
+             BorderPane.alignment="CENTER_RIGHT" />
+   </bottom>
+
    <right>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
    </right>
+
 </BorderPane>

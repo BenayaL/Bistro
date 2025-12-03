@@ -5,7 +5,7 @@ import java.time.LocalTime;
 import java.io.Serializable;
 import java.sql.Date;
 
-public class Order {
+public class Order implements Serializable {
 
 	private int orderNumber;
 	private int confimationCode;

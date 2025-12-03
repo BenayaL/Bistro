@@ -4,6 +4,7 @@ import clientserver.Message;
 import entities.Order;
 import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -25,19 +26,19 @@ public class BistroClient extends AbstractClient {
 	public static boolean awaitResponse = false;
 
 	/*
-	 * Constructor to initialize the BistroClient with the server's host and port.
+	 * Constructor to initialize the BistroClient with the server's host and port
 	 * 
-	 * @param host The server's hostname or IP address.
-	 * @param port The server's port number.
-	 * @throws Exception If there is an error connecting to the server.
+	 * @param host The server's hostname or IP address
+	 * @param port The server's port number
+	 * @throws Exception If there is an error connecting to the server
 	 */
 	public BistroClient(String host, int port) throws Exception {
-		super(host, port);
-		try {
-			openConnection(); // Attempt to open a connection
-		} catch (IOException e) {
-			throw new Exception(); // Handle connection errors
-		}
+	    super(host, port);
+	    try {
+	        openConnection(); // Attempt to open a connection
+	    } catch (IOException e) {
+	        throw new Exception("Could not connect to server at " + host + ":" + port, e);
+	    }
 	}
 	
 	/*
@@ -71,7 +72,7 @@ public class BistroClient extends AbstractClient {
 		} catch (IOException e) {
 			e.printStackTrace(); // Handle errors during message sending
 			System.out.println("Could not send message to server: Terminating client." + e);
-			quit(); // Terminate the client
+			System.exit(0);
 		}
 	}
 	
@@ -89,6 +90,7 @@ public class BistroClient extends AbstractClient {
 		currentStage.setTitle(string);
 		currentStage.setScene(newScene);
 		currentStage.show();
+		
 	}
 	
 	/*
@@ -96,13 +98,16 @@ public class BistroClient extends AbstractClient {
 	 * 
 	 * @return A list of Order objects retrieved from the server.
 	 */
+	
+	@SuppressWarnings("unchecked")
 	public List<Order> getOrdersListFromServer() {
-		handleMessageFromClientUI(new Message("getOrdersList", null));
-		if (messageFromServer.getId().equals("ordersList")) {
-			List<Order> ordersList = (List<Order>) messageFromServer.getData();
-			return ordersList;
+		messageFromServer = new Message("getOrdersList", null);
+		handleMessageFromClientUI(messageFromServer);
+		if ("ordersList".equals(messageFromServer.getId())) {
+	        return (List<Order>) messageFromServer.getData();
 		}
 		return null;
+		
 	}
 	
 	/*

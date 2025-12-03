@@ -1,6 +1,7 @@
 package entities;
+import java.io.Serializable;
 
-public class Member {
+public class Member implements Serializable {
 	private int memberID;
 	
 	public Member(int memberID) {

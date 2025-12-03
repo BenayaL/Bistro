@@ -32,29 +32,37 @@ public class ViewOrdersScreenController {
 	private TableView<Order> ordersTableView; // TableView to display orders
 	
 	@FXML
-	private TableColumn<Order,Integer> orderNumberCol; // Column for order numbers
+	private TableColumn<Order, Integer> orderNumberCol; // Column for order numbers
 	
 	@FXML
-	private TableColumn<Order,LocalDate> OrderDateCol; // Column for order dates
+	private TableColumn<Order, LocalDate> orderDateCol; // Column for order dates
 	
 	@FXML
 	private TableColumn<Order, Integer> guestsAmountCol; // Column for number of guests
 	
 	@FXML
-	private TableColumn<Order, LocalDate> placingOrderDateCol ; // Column for place order dates
+	private TableColumn<Order, LocalDate> placingOrderDateCol; // Column for place order dates
 	
 	@FXML
 	private TableColumn<Order, Integer> memberIDCol; // Column for member IDs
 	
 	@FXML
-	private TableColumn<Order, Integer> confirmCodeCol; // Column for confirmation codes
+	private TableColumn<Order, Integer> confirmCodeCol; // Column for member IDs
 	
 	
-	/*
-	 * Method to handle Home button click and load the home screen
-	 * 
-	 * @param event The event triggered by clicking the Home button
-	 */
+	@FXML
+	public void initialize() {
+		orderNumberCol.setCellValueFactory(new PropertyValueFactory<>("orderID"));
+		orderDateCol.setCellValueFactory(new PropertyValueFactory<>("orderDate"));
+		guestsAmountCol.setCellValueFactory(new PropertyValueFactory<>("dinersAmount"));
+		placingOrderDateCol.setCellValueFactory(new PropertyValueFactory<>("placingOrderDate"));
+		memberIDCol.setCellValueFactory(new PropertyValueFactory<>("memberID"));
+		confirmCodeCol.setCellValueFactory(new PropertyValueFactory<>("confimationCode")); 
+
+		loadOrdersTable();
+	}
+	
+	
 	@FXML
 	public void btnHome(Event event) {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/fxml/HomeScreen.fxml"));
@@ -68,33 +76,17 @@ public class ViewOrdersScreenController {
 		}
 	}
 	
-	
-	/*
-	 * Method to load orders data into the TableView from the server
-	 */
 	@FXML
 	public void loadOrdersTable() {
-		ObservableList<Order> ordersDataFromServer;
 		List<Order> ordersList = BistroClientGUI.client.getOrdersListFromServer();
-		if(ordersList!=null) {
-			ordersDataFromServer = FXCollections.observableArrayList(); // Initialize the observable list
-			//loop to add orders to the observable list
-			for(Order o: ordersList) {
-				ordersDataFromServer.add(o);
-			}
-			// Set cell value factories for each column 
-			orderNumberCol.setCellValueFactory(new PropertyValueFactory<>("orderID"));
-			OrderDateCol.setCellValueFactory(new PropertyValueFactory<>("orderDate"));
-			guestsAmountCol.setCellValueFactory(new PropertyValueFactory<>("dinersAmount"));
-			placingOrderDateCol.setCellValueFactory(new PropertyValueFactory<>("placingOrderDate"));
-			memberIDCol.setCellValueFactory(new PropertyValueFactory<>("memberID"));
-			confirmCodeCol.setCellValueFactory(new PropertyValueFactory<>("confimationCode"));
-			// Set the items for the TableView
+		
+		if (ordersList != null) {
+			ObservableList<Order> ordersDataFromServer =
+					FXCollections.observableArrayList(ordersList);
+			
 			ordersTableView.setItems(ordersDataFromServer);
-			} else {
-				BistroClientGUI.client.display(lblError, "Could not retrieve orders list from server.", Color.RED);
+		} else {
+			BistroClientGUI.client.display(lblError, "Could not retrieve orders list from server.", Color.RED);
 		}
 	}
-	
-	
 }
