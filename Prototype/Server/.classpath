@@ -10,5 +10,6 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/OCSF"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/Prototype"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/javaFx"/>
+	<classpathentry kind="lib" path="lib/mysql-connector-j-9.5.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
