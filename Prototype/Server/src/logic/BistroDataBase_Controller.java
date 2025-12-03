@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import entities.Order;
-import entities.
+
 
 public class BistroDataBase_Controller {
 	
@@ -65,12 +65,15 @@ public class BistroDataBase_Controller {
 	                 int confirmation_code =rs.getInt("confirmation_code");
 	                 int member_id =rs.getInt("member_id");
 	                 Date date_of_placing_order = rs.getDate("date_of_placing_order");
+	                 
+	                 
+	                 return new Order(order_number, order_date, number_of_guests, confirmation_code, member_id, date_of_placing_order);
 	               
-	             }  catch (SQLException ex) {
+	             }  
+	    	 }	catch (SQLException ex) {
 	            	 System.out.println("SQLException: " + ex.getMessage());
 	            	 return null;
 	             }
-	    	 }
 	        
 	    }
 	    

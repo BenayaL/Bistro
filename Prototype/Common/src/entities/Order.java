@@ -3,16 +3,18 @@ package entities;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.io.Serializable;
+import java.sql.Date;
 
 public class Order {
 
 	private int orderNumber;
 	private int confimationCode;
-	private LocalDate orderDate;
-	private LocalDate placingOrderDate;
+	private Date orderDate;
+	private Date placingOrderDate;
 	private LocalTime orderTime;
 	private int dinersAmount;
 	private Member member;
+	
 
 	/**
 	 * Constructor for Order class
@@ -24,13 +26,13 @@ public class Order {
 	 * @param dinersAmount    the amount of diners
 	 */
 
-	public Order(int orderNumber, int confimationCode, LocalDate orderDate, LocalTime orderTime, int dinersAmount,
-			Member member) {
+	public Order(int orderNumber,Date orderDate, int dinersAmount, int confimationCode, int member_id, Date placeingorderdate) {
 		this.orderNumber = orderNumber;
 		this.confimationCode = confimationCode;
 		this.orderDate = orderDate;
-		this.orderTime = orderTime;
+		this.placingOrderDate = placeingorderdate;
 		this.dinersAmount = dinersAmount;
+		this.member = new Member(member_id);
 	}
 
 	// Getters and Setters:
@@ -50,15 +52,15 @@ public class Order {
 		this.confimationCode = confimationCode;
 	}
 
-	public LocalDate getPlacingOrderDate() {
+	public Date getPlacingOrderDate() {
 		return placingOrderDate;
 	}
 
-	public LocalDate getOrderDate() {
+	public Date getOrderDate() {
 		return orderDate;
 	}
 
-	public void setOrderDate(LocalDate orderDate) {
+	public void setOrderDate(Date orderDate) {
 		this.orderDate = orderDate;
 	}
 
