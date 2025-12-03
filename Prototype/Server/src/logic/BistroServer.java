@@ -1,7 +1,6 @@
 package logic;
 
 import java.io.IOException;
-import Server.EchoServer;
 import gui.controllers.ServerConsoleController;
 import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
@@ -33,11 +32,17 @@ public class BistroServer extends AbstractServer {
 		System.out.println("Server started");
 		serverConsole.displayMessageToConsole("Server started\n");
 		boolean isConnectToDB = BistroDataBase_Controller.openConnection();
-		
+		if(isConnectToDB) {
+			serverConsole.displayMessageToConsole("Connected to database successfully");
+		} else {
+			serverConsole.displayMessageToConsole("Failed to connect to database");
+		}
 	}
 	
 	protected void serverStopped() {
 		System.out.println("Server stopped");
+		serverConsole.displayMessageToConsole("Server stopped");
+		BistroDataBase_Controller.closeConnection();
 	}
 	
 	

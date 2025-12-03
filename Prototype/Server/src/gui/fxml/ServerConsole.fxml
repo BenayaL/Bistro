@@ -28,7 +28,7 @@
                       <Insets bottom="10" left="10" right="10" top="0" />
                   </padding>
                   <TextField fx:id="txtCommand" promptText="Enter server command (e.g. &quot;show clients&quot;, &quot;shutdown&quot;)" HBox.hgrow="ALWAYS" />
-                  <Button fx:id="btnSend" defaultButton="true" onAction="#onSendCommand" styleClass="button-secondary" text="Send" />
+                  <Button fx:id="btnSend" defaultButton="true" onAction="#btnSend" styleClass="button-secondary" text="Send" />
               </HBox>
             <AnchorPane prefHeight="30.0" prefWidth="836.0">
                <children>
@@ -42,9 +42,9 @@
    <left>
       <VBox prefHeight="306.0" prefWidth="106.0" spacing="20.0" BorderPane.alignment="CENTER">
          <children>
-               <Button fx:id="btnStart" onAction="#btnSend" styleClass="button-secondary" text="Start Server" />
-               <Button fx:id="btnStop" onAction="#onStopServer" styleClass="button-primary" text="Stop Server" />
-               <Button fx:id="btnClear" onAction="#onClearLog" styleClass="button-primary" text="Clear Log" />
+               <Button fx:id="btnStart" onAction="#btnStart" styleClass="button-secondary" text="Start Server" />
+               <Button fx:id="btnStop" onAction="#btnStop" styleClass="button-primary" text="Stop Server" />
+               <Button fx:id="btnClear" onAction="#btnClear" styleClass="button-primary" text="Clear Log" />
          </children>
          <BorderPane.margin>
             <Insets left="3.0" />

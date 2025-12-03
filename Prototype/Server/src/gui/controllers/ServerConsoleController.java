@@ -35,7 +35,7 @@ public class ServerConsoleController {
 	
 	@FXML
 	public void btnStart(Event event) {
-		displayMessageToConsole("Starting server...\n");
+		displayMessageToConsole("Starting server...");
 		try {
 			BistroServerGUI.server = new BistroServer(ServerPortFrameController.DEFAULT_PORT,this);
 		} catch (Exception e) {
@@ -44,16 +44,31 @@ public class ServerConsoleController {
 		}
 		try {
 			BistroServerGUI.server.listen();
-			displayMessageToConsole("Server started and listening on port " + ServerPortFrameController.DEFAULT_PORT + "\n");
+			displayMessageToConsole("Server started and listening on port " + ServerPortFrameController.DEFAULT_PORT);
 		} catch (Exception e) {
 			e.printStackTrace();
-			displayMessageToConsole("Error: Could not listen on port " + ServerPortFrameController.DEFAULT_PORT + "\n");
+			displayMessageToConsole("Error: Could not listen on port " + ServerPortFrameController.DEFAULT_PORT );
 		}
 	}
 	
+	@FXML
+	public void btnStop(Event event) {
+		displayMessageToConsole("Stopping server...");
+		try {
+			BistroServerGUI.server.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+			displayMessageToConsole("Error stopping server: " + e.getMessage() + "\n");
+		}
+	}
+	
+	@FXML
+	public void btnClear(Event event) {
+		txtLog.clear();
+	}
 	
 	public void displayMessageToConsole(String message) {
-		txtLog.appendText(message + "\n");
+		txtLog.appendText(">"+ message + "\n");
 	}
 	
 	
