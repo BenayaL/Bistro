@@ -82,14 +82,14 @@ public class BistroDataBase_Controller {
 	    
 	    //Method that update an order information on order date and number of guests fields.
 	    //public static boolean updateOrder(int ConfCode, Date newOrderDate, int newNumOfGuests)
-	    public static boolean updateOrder(ArrayList<Object> orderUpdateData)
+	    public static boolean updateOrder(List<Object> orderUpdateData)
 	    {
 	    	 String updateQuery = "UPDATE orders SET order_date = ?, number_of_guests = ? WHERE confirmation_code = ?";
 	    	 
 	    	 try (PreparedStatement pst = conn.prepareStatement(updateQuery)) {
-	             pst.setDate(1, orderUpdateData.get(1));	//get from list  order Date
-	             pst.setInt(2, orderUpdateData.get(2));  	//get from list number of guests
-	             pst.setInt(3, orderUpdateData.get(0));		//get from list	confirmation code
+	             pst.setDate(1, (Date) orderUpdateData.get(1));	//get from list order Date
+	             pst.setInt(2, (int) orderUpdateData.get(2));  	//get from list number of guests
+	             pst.setInt(3, (int) orderUpdateData.get(0));	//get from list	confirmation code
 	             
 	             int rowsAffected = pst.executeUpdate();
 	             if (rowsAffected > 0) {

@@ -39,6 +39,7 @@ public class BistroServerGUI extends Application {
 		Scene newScene = new Scene(root);
 		currentStage.setTitle(string);
 		currentStage.setScene(newScene);
+		currentStage.centerOnScreen();
 		currentStage.show();
 	}
 	

@@ -28,11 +28,11 @@
       <AnchorPane prefHeight="600.0" prefWidth="190.0" BorderPane.alignment="CENTER">
          <children>
             <Button fx:id="btnHome"
+                    onAction="#btnHome"
                     layoutX="66.0"
                     layoutY="14.0"
                     mnemonicParsing="false"
                     styleClass="button-primary"
-                    stylesheets="@styles.css"
                     text="Home" />
          </children>
       </AnchorPane>
@@ -44,8 +44,7 @@
 
             <TableView fx:id="ordersTableView"
                        prefHeight="200.0"
-                       prefWidth="200.0"
-                       stylesheets="@styles.css">
+                       prefWidth="200.0">
                <columns>
                   <TableColumn fx:id="orderNumberCol"
                                maxWidth="1.7976931348623157E308"
