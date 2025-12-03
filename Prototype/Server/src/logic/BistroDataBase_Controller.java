@@ -81,21 +81,22 @@ public class BistroDataBase_Controller {
 	    }
 	    
 	    //Method that update an order information on order date and number of guests fields.
-	    public static boolean updateOrder(int ConfCode, Date newOrderDate, int newNumOfGuests)
+	    //public static boolean updateOrder(int ConfCode, Date newOrderDate, int newNumOfGuests)
+	    public static boolean updateOrder(ArrayList<Object> orderUpdateData)
 	    {
 	    	 String updateQuery = "UPDATE orders SET order_date = ?, number_of_guests = ? WHERE confirmation_code = ?";
 	    	 
 	    	 try (PreparedStatement pst = conn.prepareStatement(updateQuery)) {
-	             pst.setDate(1, newOrderDate);
-	             pst.setInt(2, newNumOfGuests);  
-	             pst.setInt(3, ConfCode);
+	             pst.setDate(1, orderUpdateData.get(1));	//get from list  order Date
+	             pst.setInt(2, orderUpdateData.get(2));  	//get from list number of guests
+	             pst.setInt(3, orderUpdateData.get(0));		//get from list	confirmation code
 	             
 	             int rowsAffected = pst.executeUpdate();
 	             if (rowsAffected > 0) {
 	                 System.out.println("Order updated successfully");
 	                 return true;
 	             } else {
-	                 System.out.println("No Order found with confirmation code: " + ConfCode);
+	                 System.out.println("No Order found with confirmation code: " + orderUpdateData.get(0));
 	                 return false;
 	             }
 	         } catch (SQLException ex) {

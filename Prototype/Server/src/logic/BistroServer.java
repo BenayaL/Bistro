@@ -41,7 +41,10 @@ public class BistroServer extends AbstractServer {
 				//BistroClient.handleMessageFromServer(allOrders);
 				return;
 			case "updateOrderStatus":
-				//BistroDataBase_Controller.updateOrder(((Message) msg).getData());
+				List<Object> orderUpdateData = new ArrayList<>();
+				boolean UpdateStatus;
+				UpdateStatus = BistroDataBase_Controller.updateOrder(orderUpdateData);
+				//BistroClient.handleMessageFromServer(UpdateStatus);				//tell to client that update succeeded
 				return;
 			default:
 				
