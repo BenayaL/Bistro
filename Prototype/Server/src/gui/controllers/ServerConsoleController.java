@@ -1,5 +1,6 @@
 package gui.controllers;
 
+import javafx.application.Platform;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -24,9 +25,6 @@ public class ServerConsoleController {
 	private Button btnSend; // Send command button
 	
 	@FXML
-	private Label lblError; // Error message label
-	
-	@FXML
 	private TextArea txtLog; // Console log area
 	
 	@FXML
@@ -43,37 +41,44 @@ public class ServerConsoleController {
 	public void btnStart(Event event) {
 		displayMessageToConsole("Starting server...");
 		try {
-			BistroServerGUI.server = new BistroServer(ServerPortFrameController.DEFAULT_PORT,this);
+			BistroServerGUI.server = new BistroServer(ServerPortFrameController.listeningPort,this);
 		} catch (Exception e) {
 			e.printStackTrace();
 			displayMessageToConsole("Error starting server: " + e.getMessage() + "\n");
 		}
 		try {
 			BistroServerGUI.server.listen();
-			displayMessageToConsole("Server started and listening on port " + ServerPortFrameController.DEFAULT_PORT);
+			displayMessageToConsole("Server started and listening on port " + ServerPortFrameController.listeningPort);
 		} catch (Exception e) {
 			e.printStackTrace();
-			displayMessageToConsole("Error: Could not listen on port " + ServerPortFrameController.DEFAULT_PORT );
+			displayMessageToConsole("Error: Could not listen on port " + ServerPortFrameController.listeningPort );
 		}
 	}
 	
 	/*
-	 * Method to handle the Stop button click event.
-	 * Stops the Bistro server and disconnects all clients.
+	 * Method to handle the Stop button click event. Stops the Bistro server and
+	 * disconnects all clients.
 	 * 
 	 * @param event The event that triggered the button click.
 	 */
 	@FXML
 	public void btnStop(Event event) {
 		displayMessageToConsole("Stopping server...");
-		try {
-			BistroServerGUI.server.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-			displayMessageToConsole("Error stopping server: " + e.getMessage() + "\n");
-		}
+
+		Thread stopServerThread = new Thread(new Runnable() {
+			public void run() {
+				try {
+					BistroServerGUI.server.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+					Platform.runLater(() -> displayMessageToConsole("Error stopping server: " + e.getMessage() + "\n"));
+				}
+			}
+		});
+		stopServerThread.start();
 	}
 	
+
 	/*
 	 * Method to handle the Clear button click event.
 	 * Clears the console log area.
@@ -118,7 +123,7 @@ public class ServerConsoleController {
 			break;
 		}	
 	}
-
+	
 	/*
 	 * Method to display a message in the console log area.
 	 * 

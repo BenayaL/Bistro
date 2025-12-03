@@ -15,9 +15,7 @@ import javafx.stage.Stage;
 import logic.BistroServerGUI;
 
 public class ServerPortFrameController {
-	
-	final public static int DEFAULT_PORT = 5555;
-	
+ 	public static int listeningPort = 5555; // Default port number for server listening
 	@FXML
 	private Button btnDone; // Done button to confirm port entry
 	
@@ -49,10 +47,12 @@ public class ServerPortFrameController {
 			BistroServerGUI.display(lblError," Port number cannot be empty.", Color.RED);
 			return;
 		}
-		else if(intPort != DEFAULT_PORT) {
-			BistroServerGUI.display(lblError,"Port incorrect!", Color.ORANGE);
+		else if(intPort < 1024 || intPort > 65535) {
+			BistroServerGUI.display(lblError," Port number must be between 1024 and 65535.", Color.RED);
+			return;
 		}
 		else {
+			listeningPort = intPort;
 			BistroServerGUI.display(lblError," Port accepted.", Color.GREEN);
 			try {
 				FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/fxml/ServerConsole.fxml"));

@@ -10,8 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-
-<BorderPane prefHeight="349.0" prefWidth="238.0" stylesheets="@/gui/css/styles.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controllers.ServerPortFrameController">
+<BorderPane prefHeight="349.0" prefWidth="238.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controllers.ServerPortFrameController">
    <top>
       <ImageView fitHeight="142.0" fitWidth="142.0" BorderPane.alignment="CENTER">
          <image>
@@ -36,6 +35,7 @@
                </children>
             </HBox>
             <Button fx:id="btnDone" mnemonicParsing="false" onAction="#btnDone" styleClass="button-secondary" text="Done" />
+            <Label fx:id="lblError" />
          </children>
       </VBox>
    </center>

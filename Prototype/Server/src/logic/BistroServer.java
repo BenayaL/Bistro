@@ -55,7 +55,7 @@ public class BistroServer extends AbstractServer {
 				 this.sendToAllClients("Error");
 			 }
 		 } else if (message.startsWith("UPDATE:")) {
-		*/	 
+		 
 			 String data = message.substring(7).trim();
 			 String[] parts = data.split("\\|");
 			 if (parts.length == 4) {
@@ -73,7 +73,7 @@ public class BistroServer extends AbstractServer {
 					 this.sendToAllClients("UPDATE_FAILED");
 				 }
 			 }
-		 }
+		 }*/
 				
 	}
 	
@@ -92,6 +92,12 @@ public class BistroServer extends AbstractServer {
 		System.out.println("Server stopped");
 		serverConsole.displayMessageToConsole("Server stopped");
 		BistroDataBase_Controller.closeConnection();
+	}
+
+
+	public void showAllConnections() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	
