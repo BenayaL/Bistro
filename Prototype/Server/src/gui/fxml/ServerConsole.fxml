@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane prefHeight="467.0" prefWidth="836.0" stylesheets="@/gui/css/styles.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controllers.ServerConsoleController">
+<BorderPane prefHeight="467.0" prefWidth="836.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controllers.ServerConsoleController">
     <center>
         <TextArea fx:id="txtLog" editable="false" prefHeight="296.0" prefWidth="724.0" wrapText="true" BorderPane.alignment="CENTER">
             <BorderPane.margin>
@@ -30,9 +30,8 @@
                   <TextField fx:id="txtCommand" promptText="Enter server command (e.g. &quot;show clients&quot;, &quot;shutdown&quot;)" HBox.hgrow="ALWAYS" />
                   <Button fx:id="btnSend" defaultButton="true" onAction="#btnSend" styleClass="button-secondary" text="Send" />
               </HBox>
-            <AnchorPane prefHeight="30.0" prefWidth="836.0">
+            <AnchorPane prefHeight="8.0" prefWidth="836.0">
                <children>
-                  <Label fx:id="lblConnections" layoutX="23.0" layoutY="6.0" text="Connections: 0" />
                   <Label layoutX="451.0" layoutY="15.0" text="© 2025 Bistro Management System – All rights reserved · v0.1 Prototype." />
                </children>
             </AnchorPane>
