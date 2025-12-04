@@ -40,8 +40,8 @@ public class BistroClientGUI extends Application {
         Image appIcon = new Image(getClass().getResourceAsStream("/resources/bistroLogoIcon.png")); 
         // Set the icon for the primary stage
         primaryStage.getIcons().add(appIcon); // Create server port frame
-        primaryStage.centerOnScreen(); // Center the primary stage on the screen
-		connectionFrame.start(primaryStage); // Start the connection frame
+		connectionFrame.start(primaryStage); // Start the connection fram
+		primaryStage.centerOnScreen(); // Center the primary stage on the screen
 		
 	}
 	

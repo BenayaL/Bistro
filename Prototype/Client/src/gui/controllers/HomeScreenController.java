@@ -67,7 +67,9 @@ public class HomeScreenController {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/fxml/" + "ViewOrdersScreen" + ".fxml"));
 		try {
 			Parent root = loader.load();
+			
 			BistroClientGUI.client.switchScreen(loader, root, event, "ViewOrders Screen");
+			
 		} catch (IOException e) {
 			System.out.println("Error: Can't load ViewOrders Screen: ");
 			e.printStackTrace();
@@ -86,9 +88,9 @@ public class HomeScreenController {
 		try {
 			Parent root = loader.load();
 			Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
-			
-			BistroClientGUI.client.switchScreen(loader, root, event, "UpdateOrder Screen");
 			stage.centerOnScreen();
+			BistroClientGUI.client.switchScreen(loader, root, event, "UpdateOrder Screen");
+			
 			
 		} catch (IOException e) {
 			System.out.println("Error: Can't load UpdateOrder Screen");
