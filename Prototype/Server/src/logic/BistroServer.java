@@ -97,7 +97,12 @@ public class BistroServer extends AbstractServer {
 	}
 
 	public void showAllConnections() {
-		// TODO Auto-generated method stub
+		Thread[] clientList = this.getClientConnections(); //Thread array of all clients
+		serverConsole.displayMessageToConsole("Number of connected clients: " + clientList.length);
+		// Display each client's information
+		for (Thread client : clientList) {
+			serverConsole.displayMessageToConsole("Client: " + client.toString());
+		}
 	}
 
 }
