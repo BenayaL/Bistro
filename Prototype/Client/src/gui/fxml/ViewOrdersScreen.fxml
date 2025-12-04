@@ -1,91 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane minHeight="420.0" minWidth="1024.0"
-            fx:controller="gui.controllers.ViewOrdersScreenController"
-            xmlns="http://javafx.com/javafx/25"
-            xmlns:fx="http://javafx.com/fxml/1"
-            stylesheets="@/gui/css/styles.css">
+<BorderPane minHeight="420.0" minWidth="1024.0" prefHeight="617.0" prefWidth="1024.0" stylesheets="@/gui/css/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controllers.ViewOrdersScreenController">
 
-   <top>
-      <ImageView fitHeight="200.0" fitWidth="200.0" BorderPane.alignment="TOP_LEFT">
-         <image>
-            <Image url="@/resources/bistroLogo.png" />
-         </image>
-      </ImageView>
-   </top>
+	<top>
+		<ImageView fitHeight="200.0" fitWidth="200.0" BorderPane.alignment="TOP_LEFT">
+			<image>
+				<Image url="@/resources/bistroLogo.png" />
+			</image>
+		</ImageView>
+	</top>
 
-   <left>
-      <AnchorPane prefHeight="600.0" prefWidth="190.0" BorderPane.alignment="CENTER">
-         <children>
-            <Button fx:id="btnHome"
-                    onAction="#btnHome"
-                    layoutX="66.0"
-                    layoutY="14.0"
-                    mnemonicParsing="false"
-                    styleClass="button-primary"
-                    text="Home" />
-         </children>
-      </AnchorPane>
-   </left>
+	<left>
+    <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="134.0" BorderPane.alignment="CENTER">
+        <children>
+            <Button fx:id="btnHome" mnemonicParsing="false" onAction="#btnHome" prefHeight="25.0" prefWidth="55.0" styleClass="button-primary" text="Home">
+                <VBox.margin>
+                    <Insets top="25.0" />
+                </VBox.margin>
+            </Button>
+            <Button fx:id="btnUpdateOrder" mnemonicParsing="false" onAction="#btnUpdateOrder" prefHeight="25.0" prefWidth="115.0" styleClass="button-primary" text="Update Order">
+                <VBox.margin>
+                    <Insets top="10.0" />
+                </VBox.margin>
+            </Button>
+        </children>
+    </VBox>
+</left>
+	<center>
+		<VBox prefWidth="835.0" spacing="10" BorderPane.alignment="CENTER">
+			<children>
 
-   <center>
-      <VBox spacing="10" BorderPane.alignment="CENTER">
-         <children>
+				<TableView fx:id="ordersTableView" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="344.0">
+					<columns>
+						<TableColumn fx:id="orderNumberCol" maxWidth="1.7976931348623157E308" prefWidth="121.0" text="Order number" />
+						<TableColumn fx:id="orderDateCol" prefWidth="135.0" text="Date" />
+						<TableColumn fx:id="guestsAmountCol" prefWidth="108.0" text="Guests amount" />
+						<TableColumn fx:id="placingOrderDateCol" prefWidth="142.0" text="Placing order date" />
+						<TableColumn fx:id="memberIDCol" prefWidth="108.0" text="Member ID" />
+						<TableColumn fx:id="confirmCodeCol" maxWidth="175.0" prefWidth="174.0" text="Confirmation code" />
+					</columns>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+				</TableView>
 
-            <TableView fx:id="ordersTableView"
-                       prefHeight="200.0"
-                       prefWidth="200.0">
-               <columns>
-                  <TableColumn fx:id="orderNumberCol"
-                               maxWidth="1.7976931348623157E308"
-                               prefWidth="155.0"
-                               text="Order number" />
-                  <TableColumn fx:id="orderDateCol"
-                               prefWidth="149.0"
-                               text="Date" />
-                  <TableColumn fx:id="guestsAmountCol"
-                               prefWidth="143.0"
-                               text="Guests amount" />
-                  <TableColumn fx:id="placingOrderDateCol"
-                               prefWidth="155.0"
-                               text="Placing order date" />
-                  <TableColumn fx:id="memberIDCol"
-                               prefWidth="139.0"
-                               text="Member ID" />
-                  <TableColumn fx:id="confirmCodeCol"
-                               prefWidth="248.0"
-                               text="Confirmation code" />
-               </columns>
-            </TableView>
+				<Label fx:id="lblError" alignment="CENTER" prefWidth="400.0" text="" textFill="RED" />
 
-            <Label fx:id="lblError"
-                   alignment="CENTER"
-                   text=""
-                   textFill="RED"
-                   prefWidth="400.0" />
+			</children>
+		</VBox>
+	</center>
 
-         </children>
-      </VBox>
-   </center>
+	<bottom>
+		<Label alignment="CENTER" text="© 2025 Bistro Management System – All rights reserved · v0.1 Prototype" BorderPane.alignment="CENTER_RIGHT" />
+	</bottom>
 
-   <bottom>
-      <Label alignment="CENTER"
-             text="© 2025 Bistro Management System – All rights reserved · v0.1 Prototype"
-             BorderPane.alignment="CENTER_RIGHT" />
-   </bottom>
-
-   <right>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
-   </right>
+	<right>
+		<VBox prefHeight="400.0" prefWidth="42.0" BorderPane.alignment="CENTER" />
+	</right>
 
 </BorderPane>

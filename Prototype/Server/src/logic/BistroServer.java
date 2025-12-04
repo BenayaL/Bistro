@@ -28,52 +28,56 @@ public class BistroServer extends AbstractServer {
 
 	@Override
 	protected void handleMessageFromClient(Object msg, ConnectionToClient client) {
-		// TODO Auto-generated method stub
-		if (msg instanceof Message) {
+	    if (msg instanceof Message) {
 
-			String message = ((Message) msg).getId();
-			System.out.print("message received: " + message + "from: " + client + "\n");
-			try {
-				switch (message) {
-				case "getOrdersList":
-					List<Order> allOrders = new ArrayList<>();
-					allOrders = BistroDataBase_Controller.getAllOrders();
-					client.sendToClient(new Message("ordersList", allOrders));
-					return;
-				case "updateOrderStatus":
-					List<Object> orderUpdateData = new ArrayList<>();
-					boolean UpdateStatus;
-					UpdateStatus = BistroDataBase_Controller.updateOrder(orderUpdateData);
-					client.sendToClient(new Message("updateOrderStatusResponse", UpdateStatus));
-					return;
-				default:
-					client.sendToClient(new Message("unknownCommand: " + ((Message) msg).getId(), null));
-					break;
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		/*
-		 * (message.equals("getOrdersList")) { String sid = message.substring(7).trim();
-		 * Student s = mysqlConnection.getStudentById(sid); if (s != null) {
-		 * System.out.println("Sending student: " + s.toString() + " to " + client);
-		 * this.sendToAllClients(s.toString()); } else {
-		 * System.out.println("Student not found for id: " + sid);
-		 * this.sendToAllClients("Error"); } } else if (message.startsWith("UPDATE:")) {
-		 * 
-		 * String data = message.substring(7).trim(); String[] parts =
-		 * data.split("\\|"); if (parts.length == 4) { String sid = parts[0]; String
-		 * pName = parts[1]; String lName = parts[2]; String fName = parts[3];
-		 * 
-		 * boolean success = mysqlConnection.updateStudent(sid, pName, lName, fName); if
-		 * (success) { System.out.println("Student updated: " + sid);
-		 * this.sendToAllClients("UPDATE_SUCCESS"); } else {
-		 * System.out.println("Failed to update student: " + sid);
-		 * this.sendToAllClients("UPDATE_FAILED"); } } }
-		 */
+	        Message messageObj = (Message) msg;
+	        String messageId = messageObj.getId();
 
+	        System.out.print("message received: " + messageId + " from: " + client + "\n");
+
+	        try {
+	            switch (messageId) {
+
+	            case "getOrdersList":
+	                List<Order> allOrders = BistroDataBase_Controller.getAllOrders();
+	                client.sendToClient(new Message("ordersList", allOrders));
+	                return;
+
+	            case "updateOrderStatus":
+	                // The client sends an Order object as the data field
+	                Order orderToUpdate = (Order) messageObj.getData();
+
+	                boolean updateStatus = BistroDataBase_Controller.updateOrder(orderToUpdate);
+
+	                if (updateStatus) {
+	                    // Match the string your controller already expects
+	                    client.sendToClient(new Message("updateOrderSuccess", null));
+	                } else {
+	                    // Currently we only know "update failed", treat it as invalid code
+	                    client.sendToClient(new Message("invalidConfirmCode", null));
+	                }
+	                return;
+
+	            case "getOrderByConfirmationCode":
+	                // The client sends an integer confirmation code as the data field
+	                int confirmationCode = (int) messageObj.getData();
+	                Order order = BistroDataBase_Controller.getOrderByConfirmationCode(confirmationCode);
+	                client.sendToClient(new Message("orderByConfirmationCode", order));
+	                return;
+
+	            default:
+	                client.sendToClient(new Message("unknownCommand",
+	                        "Unknown command: " + messageId));
+	                return;
+	            }
+
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+	    }
 	}
+
+
 
 	protected void serverStarted() {
 		System.out.println("Server started");

@@ -89,7 +89,7 @@ public class HomeScreenController {
 			Parent root = loader.load();
 			Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
 			stage.centerOnScreen();
-			BistroClientGUI.client.switchScreen(loader, root, event, "UpdateOrder Screen");
+			BistroClientGUI.client.switchScreen(loader, root, event, "Update Order");
 			
 			
 		} catch (IOException e) {

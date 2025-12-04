@@ -26,6 +26,9 @@ public class ViewOrdersScreenController {
 	private Button btnHome; // Button to return to home screen
 	
 	@FXML
+	private Button btnUpdateOrder; // Button to view orders
+	
+	@FXML
 	private Label lblError; // Label for displaying errors
 	
 	@FXML
@@ -89,4 +92,18 @@ public class ViewOrdersScreenController {
 			BistroClientGUI.client.display(lblError, "Could not retrieve orders list from server.", Color.RED);
 		}
 	}
+	
+	@FXML
+	public void btnUpdateOrder(Event event) {
+	    FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/fxml/UpdateOrderScreen.fxml"));
+	    try {
+	        loader.load();
+	        Parent root = loader.getRoot();
+	        BistroClientGUI.client.switchScreen(loader, root, event, "Update Order");
+	    } catch (IOException e) {
+	        System.out.println("Error: Cannot load View Orders screen");
+	        BistroClientGUI.client.display(lblError, "Cannot load screen.", Color.RED);
+	    }
+	}
+
 }

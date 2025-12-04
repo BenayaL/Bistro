@@ -37,10 +37,10 @@ public class BistroClientGUI extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		ServerConnectionFrameController connectionFrame = new ServerConnectionFrameController(); // Create server connection frame
 		// Load the icon image from resources
-        Image appIcon = new Image(getClass().getResourceAsStream("/resources/bistroLogoIcon.png")); 
+        Image appIcon = new Image(getClass().getResourceAsStream("/resources/bistroLogoIconBorder.png"));
         // Set the icon for the primary stage
         primaryStage.getIcons().add(appIcon); // Create server port frame
-		connectionFrame.start(primaryStage); // Start the connection fram
+		connectionFrame.start(primaryStage); // Start the connection frame
 		primaryStage.centerOnScreen(); // Center the primary stage on the screen
 		
 	}

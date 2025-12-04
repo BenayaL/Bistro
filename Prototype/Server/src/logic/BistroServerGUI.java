@@ -24,7 +24,7 @@ public class BistroServerGUI extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		ServerPortFrameController portFrame = new ServerPortFrameController();
 		// Load the icon image from resources
-        Image appIcon = new Image(getClass().getResourceAsStream("/resources/bistroLogoIcon.png")); 
+        Image appIcon = new Image(getClass().getResourceAsStream("/resources/bistroLogoIconBorder.png")); 
         // Set the icon for the primary stage
         primaryStage.getIcons().add(appIcon); // Create server port frame
         

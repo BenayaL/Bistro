@@ -51,7 +51,7 @@ public class BistroDataBase_Controller {
 	        return conn;
 	    }
 	    
-	    //Method that bring an order information from  order DB.
+	    // Method that bring an order information from  order DB.
 	    public static Order getOrderByConfirmationCode(int ConfCode)
 	    {
 	    	String orderQuery = "SELECT order_number, order_date, number_of_guests, confirmation_code, member_id, date_of_placing_order FROM orders WHERE confirmation_code = ?";
@@ -82,29 +82,43 @@ public class BistroDataBase_Controller {
 	    
 	    //Method that update an order information on order date and number of guests fields.
 	    //public static boolean updateOrder(int ConfCode, Date newOrderDate, int newNumOfGuests)
-	    public static boolean updateOrder(List<Object> orderUpdateData)
-	    {
-	    	 String updateQuery = "UPDATE orders SET order_date = ?, number_of_guests = ? WHERE confirmation_code = ?";
-	    	 
-	    	 try (PreparedStatement pst = conn.prepareStatement(updateQuery)) {
-	             pst.setDate(1, (Date) orderUpdateData.get(1));	//get from list order Date
-	             pst.setInt(2, (int) orderUpdateData.get(2));  	//get from list number of guests
-	             pst.setInt(3, (int) orderUpdateData.get(0));	//get from list	confirmation code
-	             
-	             int rowsAffected = pst.executeUpdate();
-	             if (rowsAffected > 0) {
-	                 System.out.println("Order updated successfully");
-	                 return true;
-	             } else {
-	                 System.out.println("No Order found with confirmation code: " + orderUpdateData.get(0));
-	                 return false;
-	             }
-	         } catch (SQLException ex) {
-	             System.out.println("SQLException in updateOrder: " + ex.getMessage());
-	             return false;
-	         }
-	    	
+	    // Method that updates an order's date and number of guests by its confirmation code.
+	    public static boolean updateOrder(Order orderUpdateData) {
+	        // Ensure we have a connection
+	        if (conn == null && !openConnection()) {
+	            System.out.println("updateOrder: No DB connection available.");
+	            return false;
+	        }
+
+	        String updateQuery =
+	            "UPDATE orders SET order_date = ?, number_of_guests = ? WHERE confirmation_code = ?";
+
+	        try (PreparedStatement pst = conn.prepareStatement(updateQuery)) {
+
+	            // Use values from the Order object
+	            pst.setDate(1, orderUpdateData.getOrderDate());        // java.sql.Date
+	            pst.setInt(2, orderUpdateData.getDinersAmount());      // int
+	            pst.setInt(3, orderUpdateData.getConfimationCode());   // int
+
+	            int rowsAffected = pst.executeUpdate();
+
+	            if (rowsAffected > 0) {
+	                System.out.println("Order updated successfully, confirmation code: "
+	                                   + orderUpdateData.getConfimationCode());
+	                return true;
+	            } else {
+	                System.out.println("No order found with confirmation code: "
+	                                   + orderUpdateData.getConfimationCode());
+	                return false;
+	            }
+
+	        } catch (SQLException ex) {
+	            System.out.println("SQLException in updateOrder: " + ex.getMessage());
+	            ex.printStackTrace();
+	            return false;
+	        }
 	    }
+
 	    
 	    public static List<Order> getAllOrders()
 	    {
@@ -139,6 +153,6 @@ public class BistroDataBase_Controller {
 	             return null;
 	         }
 	    }
-	    
+	      
 	    
 }

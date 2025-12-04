@@ -108,7 +108,21 @@ public class BistroClient extends AbstractClient {
 	        return (List<Order>) messageFromServer.getData();
 		}
 		return null;
-		
+	}
+	/*
+	 * Method to retrieve an order by its confirmation code from the server.
+	 * 
+	 * @param confirmationCode The confirmation code of the order to be retrieved.
+	 * @return The Order object corresponding to the given confirmation code.
+	 */
+	@SuppressWarnings("unchecked")
+	public Order getOrderByConfirmationCode(int confirmationCode) {
+		messageFromServer = new Message("getOrderByConfirmationCode", confirmationCode);
+		handleMessageFromClientUI(messageFromServer);
+		if ("orderByConfirmationCode".equals(messageFromServer.getId())) {
+	        return (Order) messageFromServer.getData();
+		}
+		return null;
 	}
 	
 	/*
@@ -117,7 +131,7 @@ public class BistroClient extends AbstractClient {
 	 * @param orderUpdateData The data for updating the order.
 	 * @return The response ID from the server after processing the update request.
 	 */
-	public String sendOrderUpdateRequest(ArrayList<Object> orderUpdateData) {
+	public String sendOrderUpdateRequest(Order orderUpdateData) {
 		handleMessageFromClientUI(new Message("updateOrderStatus",orderUpdateData));
 		return messageFromServer.getId();
 	}

@@ -23,12 +23,12 @@
     <bottom>
       <VBox BorderPane.alignment="CENTER">
          <children>
-              <HBox prefHeight="25.0" prefWidth="836.0" spacing="10" VBox.vgrow="ALWAYS">
+              <HBox alignment="BOTTOM_CENTER" prefHeight="40.0" prefWidth="836.0" spacing="10" VBox.vgrow="ALWAYS">
                   <padding>
                       <Insets bottom="10" left="10" right="10" top="0" />
                   </padding>
-                  <TextField fx:id="txtCommand" promptText="Enter server command (e.g. &quot;show clients&quot;, &quot;shutdown&quot;)" HBox.hgrow="ALWAYS" />
-                  <Button fx:id="btnSend" defaultButton="true" onAction="#btnSend" styleClass="button-secondary" text="Send" />
+                  <TextField fx:id="txtCommand" prefHeight="20.0" prefWidth="760.0" promptText="Enter server command (e.g. &quot;/connections&quot;, &quot;/stop&quot;)" HBox.hgrow="ALWAYS" />
+                  <Button fx:id="btnSend" defaultButton="true" onAction="#btnSend" prefHeight="25.0" prefWidth="46.0" styleClass="button-secondary" text="Send" />
               </HBox>
             <AnchorPane prefHeight="8.0" prefWidth="836.0">
                <children>
