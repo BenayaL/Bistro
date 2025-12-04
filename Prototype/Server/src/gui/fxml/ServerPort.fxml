@@ -10,9 +10,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane prefHeight="349.0" prefWidth="238.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controllers.ServerPortFrameController">
+<BorderPane prefHeight="250.0" prefWidth="330.0" stylesheets="@/gui/css/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controllers.ServerPortFrameController">
    <top>
-      <ImageView fitHeight="142.0" fitWidth="142.0" BorderPane.alignment="CENTER">
+      <ImageView fitHeight="142.0" fitWidth="142.0" BorderPane.alignment="BOTTOM_CENTER">
          <image>
             <Image url="@/resources/bistroLogo.png" />
          </image>
@@ -31,7 +31,7 @@
             <HBox alignment="CENTER" prefHeight="34.0" prefWidth="238.0" spacing="8.0">
                <children>
                   <Label text="Enter Port :" />
-                  <TextField fx:id="txtPort" />
+                  <TextField fx:id="txtPort" prefHeight="25.0" prefWidth="91.0" />
                </children>
             </HBox>
             <Button fx:id="btnDone" mnemonicParsing="false" onAction="#btnDone" styleClass="button-secondary" text="Done" />
