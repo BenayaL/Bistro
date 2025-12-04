@@ -80,8 +80,9 @@ public class ServerConnectionFrameController {
 				FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/fxml/"+ "HomeScreen" +".fxml"));
 				Parent root = loader.load();
 				Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
-				BistroClientGUI.client.switchScreen(loader, root, event, "Home Screen");
 				stage.centerOnScreen();
+				BistroClientGUI.client.switchScreen(loader, root, event, "Home Screen");
+				
 				
 				
 			} catch (Exception e) {

@@ -5,6 +5,7 @@ import java.io.*;
 import gui.controllers.ServerConnectionFrameController;
 import javafx.application.Application;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
@@ -35,7 +36,13 @@ public class BistroClientGUI extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		ServerConnectionFrameController connectionFrame = new ServerConnectionFrameController(); // Create server connection frame
+		// Load the icon image from resources
+        Image appIcon = new Image(getClass().getResourceAsStream("/resources/bistroLogoIcon.png")); 
+        // Set the icon for the primary stage
+        primaryStage.getIcons().add(appIcon); // Create server port frame
+        primaryStage.centerOnScreen(); // Center the primary stage on the screen
 		connectionFrame.start(primaryStage); // Start the connection frame
+		
 	}
 	
 	public void display(Label lblError, String message, Color color) {

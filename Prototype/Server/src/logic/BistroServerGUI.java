@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
@@ -21,7 +22,12 @@ public class BistroServerGUI extends Application {
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		ServerPortFrameController portFrame = new ServerPortFrameController(); // Create server port frame
+		ServerPortFrameController portFrame = new ServerPortFrameController();
+		// Load the icon image from resources
+        Image appIcon = new Image(getClass().getResourceAsStream("/resources/bistroLogo.png")); 
+        // Set the icon for the primary stage
+        primaryStage.getIcons().add(appIcon); // Create server port frame
+        
 		portFrame.start(primaryStage); // Start the port frame
 		
 	}

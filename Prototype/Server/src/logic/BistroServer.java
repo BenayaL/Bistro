@@ -32,9 +32,8 @@ public class BistroServer extends AbstractServer {
 		if (msg instanceof Message) {
 
 			String message = ((Message) msg).getId();
-			System.out.print("message received: " + message + "from: " + client);
+			System.out.print("message received: " + message + "from: " + client + "\n");
 			try {
-
 				switch (message) {
 				case "getOrdersList":
 					List<Order> allOrders = new ArrayList<>();
@@ -78,7 +77,7 @@ public class BistroServer extends AbstractServer {
 
 	protected void serverStarted() {
 		System.out.println("Server started");
-		serverConsole.displayMessageToConsole("Server started");
+		serverConsole.displayMessageToConsole("Server started, listening for connections on port " + getPort());
 		boolean isConnectToDB = BistroDataBase_Controller.openConnection();
 		if (isConnectToDB) {
 			serverConsole.displayMessageToConsole("Connected to database successfully");
