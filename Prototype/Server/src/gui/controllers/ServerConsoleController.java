@@ -10,6 +10,11 @@ import javafx.scene.control.TextField;
 import logic.BistroServer;
 import logic.BistroServerGUI;
 
+/*
+ * Controller class for the Server Console Frame.
+ * Handles user interactions for starting/stopping the server,
+ * sending commands, and displaying console logs.
+ */
 public class ServerConsoleController {
 
 	@FXML
@@ -38,23 +43,29 @@ public class ServerConsoleController {
 	 */
 	@FXML
 	public void btnStart(Event event) {
+		// Check if the server is already running
 		if (BistroServerGUI.server != null && BistroServerGUI.server.isListening()) {
 			displayMessageToConsole(
 					"Server is already running and listening on port " + ServerPortFrameController.listeningPort);
 		} else {
 			displayMessageToConsole("Starting server...");
+			// Start the server in a separate thread to avoid blocking the javafx UI thread:
 			try {
+				//create a new server singleton instance:
 				BistroServerGUI.server = new BistroServer(ServerPortFrameController.listeningPort, this);
 			} catch (Exception e) {
 				e.printStackTrace();
 				displayMessageToConsole("Error starting server: " + e.getMessage());
 			}
+			// Start listening for client connections
 			Thread startServerThread = new Thread(new Runnable() {
+				@Override
 				public void run() {
 					try {
 						BistroServerGUI.server.listen();
 					} catch (Exception e) {
 						e.printStackTrace();
+						//Using Platform.runLater for updating UI components from a non-JavaFX thread to avoid concurrency issues.
 						Platform.runLater(() -> displayMessageToConsole(
 								"Error: Could not listen on port " + ServerPortFrameController.listeningPort));
 					}
@@ -72,17 +83,20 @@ public class ServerConsoleController {
 	 */
 	@FXML
 	public void btnStop(Event event) {
+		// Check if the server is running:
 		if (BistroServerGUI.server == null || !BistroServerGUI.server.isListening()) {
 			displayMessageToConsole("Server is not running. Please start the server first.");
 		} else {
 			displayMessageToConsole("Stopping server...");
 			// Stop the server in a separate thread to avoid blocking the UI
 			Thread stopServerThread = new Thread(new Runnable() {
+				@Override
 				public void run() {
 					try {
 						BistroServerGUI.server.close();
 					} catch (Exception e) {
 						e.printStackTrace();
+						//Using Platform.runLater for updating UI components from a non-JavaFX thread to avoid concurrency issues.
 						Platform.runLater(
 								() -> displayMessageToConsole("Error stopping server: " + e.getMessage() + "\n"));
 					}
@@ -115,6 +129,7 @@ public class ServerConsoleController {
 			displayMessageToConsole("Server is not running. Please start the server first.");
 		}
 		switch (cmd.trim().toLowerCase()) {
+		// Handle different commands
 		case "/start":
 			btnStart(event);
 			break;
@@ -129,7 +144,12 @@ public class ServerConsoleController {
 			break;
 		case "/help":
 			displayMessageToConsole(
-					"Available commands:\n/start - Start the server\n/stop - Stop the server\n/clear - Clear the console log\n/connections - Show all active client connections\n/help - Show this help message");
+					"Available commands:\n/start "
+					+ "- Start the server\n/stop "
+					+ "- Stop the server\n/clear "
+					+ "- Clear the console log\n/connections "
+					+ "- Show all active client connections\n/help "
+					+ "- Show this help message");
 			break;
 		case "":
 			displayMessageToConsole("No command entered. Type /help for a list of available commands.");
@@ -149,3 +169,4 @@ public class ServerConsoleController {
 		txtLog.appendText(">" + message + "\n");
 	}
 }
+//End of ServerConsoleController.java

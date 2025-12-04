@@ -16,6 +16,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import logic.BistroClientGUI;
 
+/**
+ * Controller for the Update Order Screen.
+ * Allows users to update existing orders by providing a confirmation code.
+ */
 public class UpdateOrderScreenController {
 	
 	@FXML
@@ -219,7 +223,7 @@ public class UpdateOrderScreenController {
 	        } else {
 	            dpOrderDate.setValue(null);
 	        }
-
+	        
 	        txtNumberOfGuests.setText(String.valueOf(order.getDinersAmount()));
 	        txtMemberId.setText(String.valueOf(order.getMemberID()));
 

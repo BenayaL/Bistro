@@ -3,6 +3,7 @@ package gui.controllers;
 
 import java.io.IOException;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.Event;
@@ -73,9 +74,8 @@ public class ServerConnectionFrameController {
 			try {
 				// Attempts to create a client instance and connect to the server.
 				BistroClientGUI.client = new BistroClient(ip, intPort);
-				
 				System.out.println("IP Entered Successfully");
-
+				BistroClientGUI.client.notifyServerOnConnection(); // Notify successful connection
 				// Load the home screen if the connection is successful.
 				FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/fxml/"+ "HomeScreen" +".fxml"));
 				Parent root = loader.load();
@@ -139,7 +139,27 @@ public class ServerConnectionFrameController {
 		primaryStage.setTitle("Server Connection");
 		primaryStage.setScene(scene);
 		primaryStage.centerOnScreen();
-		primaryStage.show();		
+		primaryStage.show();
+		
+		
+		primaryStage.setOnCloseRequest(event -> {
+			Thread exitThread = new Thread(new Runnable() {
+				@Override
+				public void run() {
+					try {
+						if (BistroClientGUI.client != null) {
+							BistroClientGUI.client.notifyServerOnExit();
+						} // Notify server of disconnection
+					} catch (Exception e) {
+						e.printStackTrace();
+					} finally {
+						Platform.exit();
+						System.exit(0);
+					}
+				}
+			});
+			exitThread.start();
+		});
 	}
 	
 	/*

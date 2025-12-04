@@ -14,12 +14,18 @@ public class BistroServerGUI extends Application {
 	
 	public static BistroServer server; // Static server instance for client communication
 	
-	
+	/*
+	 * Main method to launch the JavaFX application.
+	 */
 	public static void main(String[] args) {
 		launch(args); // Launch the JavaFX application
 	}
 	
-	
+	/*
+	 * Start method to initialize the primary stage of the JavaFX application.
+	 * 
+	 * @param primaryStage The primary stage for this application.
+	 */
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		ServerPortFrameController portFrame = new ServerPortFrameController();
@@ -60,5 +66,5 @@ public class BistroServerGUI extends Application {
 		lblError.setText(message); // Sets the error message in the label
 		lblError.setTextFill(color); // Sets the text color for the error message
 	}
-	
 }
+// End of BistroServerGUI.java

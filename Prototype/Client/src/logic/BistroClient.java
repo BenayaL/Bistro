@@ -135,7 +135,33 @@ public class BistroClient extends AbstractClient {
 		handleMessageFromClientUI(new Message("updateOrderStatus",orderUpdateData));
 		return messageFromServer.getId();
 	}
-
+	
+	public void notifyServerOnExit() {
+		try {
+			handleMessageFromClientUI(new Message("disconnect", null));
+			if (messageFromServer.getId().equals("disconnectionDisplayed")) {
+				this.closeConnection();
+				System.out.println("Client Disconnected from server successfully.");
+			}
+		} catch (Exception e) {
+			e.printStackTrace(); // Handle errors during disconnection notification
+			System.out.println("Error: Could not notify server on exit." + e);
+		}
+	}
+	
+	public void notifyServerOnConnection() {
+		try {
+			handleMessageFromClientUI(new Message("connect", null));
+			if (messageFromServer.getId().equals("connectionDisplayed")) {
+				System.out.println("Connected to server and connection displayed.");
+			}
+		} catch (Exception e) {
+			e.printStackTrace(); // Handle errors during connection notification
+			System.out.println("Error: Could not notify server on connection." + e);
+		}
+	}
+	
+	
 	/*
 	 * Method to display an error message in a label with a specified color.
 	 * 

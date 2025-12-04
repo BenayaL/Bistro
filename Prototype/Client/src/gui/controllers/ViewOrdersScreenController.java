@@ -20,6 +20,10 @@ import java.util.List;
 
 import entities.*;
 
+/**
+ * Controller for the View Orders Screen.
+ * Allows users to view existing orders in a table format.
+ */
 public class ViewOrdersScreenController {
 	
 	@FXML
@@ -60,7 +64,7 @@ public class ViewOrdersScreenController {
 		guestsAmountCol.setCellValueFactory(new PropertyValueFactory<>("dinersAmount"));
 		placingOrderDateCol.setCellValueFactory(new PropertyValueFactory<>("placingOrderDate"));
 		memberIDCol.setCellValueFactory(new PropertyValueFactory<>("memberID"));
-		confirmCodeCol.setCellValueFactory(new PropertyValueFactory<>("confimationCode")); 
+		confirmCodeCol.setCellValueFactory(new PropertyValueFactory<>("confirmationCode")); 
 
 		loadOrdersTable();
 	}

@@ -45,7 +45,7 @@ public class Order implements Serializable {
 		this.orderNumber = orderNumber;
 	}
 
-	public int getConfimationCode() {
+	public int getConfirmationCode() {
 		return confimationCode;
 	}
 

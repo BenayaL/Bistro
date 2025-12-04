@@ -4,6 +4,7 @@ import java.io.*;
 
 import gui.controllers.ServerConnectionFrameController;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
@@ -42,7 +43,6 @@ public class BistroClientGUI extends Application {
         primaryStage.getIcons().add(appIcon); // Create server port frame
 		connectionFrame.start(primaryStage); // Start the connection frame
 		primaryStage.centerOnScreen(); // Center the primary stage on the screen
-		
 	}
 	
 	public void display(Label lblError, String message, Color color) {
