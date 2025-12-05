@@ -10,10 +10,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
+import javafx.util.Callback;
 import logic.BistroClientGUI;
 
 /**
@@ -63,6 +65,19 @@ public class UpdateOrderScreenController {
 	@FXML
 	public void initialize() {
 		// These are only editable after a successful confirmation code check
+		dpOrderDate.setValue(LocalDate.now());
+		// Disable past dates in the DatePicker
+		dpOrderDate.setDayCellFactory(picker -> new DateCell() { // Custom cell factory to disable past dates
+			// Override updateItem to disable past dates
+			@Override 
+			public void updateItem(LocalDate date, boolean empty) {
+				super.updateItem(date, empty);
+				if (date.isBefore(LocalDate.now())) {
+					setDisable(true);
+					setStyle("-fx-background-color: #eeeeee;");
+				}
+			}
+		});
 		dpOrderDate.setDisable(true);
 		txtNumberOfGuests.setDisable(true);
 		btnUpdate.setDisable(true);
@@ -99,10 +114,10 @@ public class UpdateOrderScreenController {
 	 */
 	@FXML
 	public void btnUpdate(Event event) {
-		if (currentOrder == null) {
-			lblError.setText("You must load an order first.");
-			return;
-		}
+//		if (currentOrder == null) {
+//			lblError.setText("You must load an order first.");
+//			return;
+//		}
 
 		int confirmCode;
 		LocalDate orderDateLocal = dpOrderDate.getValue();
@@ -112,7 +127,7 @@ public class UpdateOrderScreenController {
 		try {
 			confirmCode = Integer.parseInt(txtConfirmCode.getText().trim());
 		} catch (NumberFormatException e) {
-			lblError.setText("Confirmation code must be a number.");
+			BistroClientGUI.client.display(lblError, "Confirmation code must be a number.", Color.RED);
 			return;
 		}
 
@@ -120,12 +135,16 @@ public class UpdateOrderScreenController {
 		try {
 			numberOfGuests = Integer.parseInt(txtNumberOfGuests.getText().trim());
 		} catch (NumberFormatException e) {
-			lblError.setText("Number of guests must be a number.");
+			BistroClientGUI.client.display(lblError, "Number of guests must be a number.", Color.RED);
 			return;
 		}
-
+		// Validate number of guests range
+		if (numberOfGuests <=0 || numberOfGuests > 20) {
+			BistroClientGUI.client.display(lblError, "Number of guests must be between 1 and 20.", Color.RED);
+			return;
+		}
 		if (orderDateLocal == null) {
-			lblError.setText("You must select a date.");
+			BistroClientGUI.client.display(lblError, "You must select a date.", Color.RED);
 			return;
 		}
 

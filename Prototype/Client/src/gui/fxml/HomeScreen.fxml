@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<StackPane maxHeight="520.0" maxWidth="-Infinity" stylesheets="@/gui/css/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controllers.HomeScreenController">
+<StackPane maxHeight="520.0" maxWidth="-Infinity" stylesheets="@/gui/css/styles.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controllers.HomeScreenController">
 
     <children>
         <BorderPane fx:id="mainPane" minHeight="360.0" minWidth="460.0">
@@ -28,6 +28,7 @@
                             <children>
                                 <Button fx:id="btnViewOrders" mnemonicParsing="false" onAction="#btnViewOrders" styleClass="button-primary" text="View Orders" />
                                 <Button fx:id="btnUpdateOrder" mnemonicParsing="false" onAction="#btnUpdateOrder" styleClass="button-primary" text="Update Order" />
+                        <Button fx:id="btnExit" mnemonicParsing="false" onAction="#btnExit"  styleClass="button-primary"  text="Exit" />
                             </children>
                         </HBox>
                   <HBox alignment="TOP_CENTER" layoutX="10.0" layoutY="398.0" prefHeight="47.0" prefWidth="829.0" spacing="30.0">

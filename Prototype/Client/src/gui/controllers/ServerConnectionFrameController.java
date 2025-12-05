@@ -139,27 +139,19 @@ public class ServerConnectionFrameController {
 		primaryStage.centerOnScreen();
 		primaryStage.show();
 		
-		
 		primaryStage.setOnCloseRequest(event -> {
-			Thread exitThread = new Thread(new Runnable() {
-				@Override
-				public void run() {
-					try {
-						if (BistroClientGUI.client != null) {
-							BistroClientGUI.client.notifyServerOnExit();
-						} // Notify server of disconnection
-					} catch (Exception e) {
-						e.printStackTrace();
-					} finally {
-						Platform.exit();
-						System.exit(0);
-					}
-				}
-			});
-			exitThread.start();
+		    try {
+		        if (BistroClientGUI.client != null) {
+		            BistroClientGUI.client.notifyServerOnExit();
+		        }
+		    } catch (Exception e) {
+		        e.printStackTrace();
+		    } finally {
+		        Platform.exit();
+		        System.exit(0);
+		    }
 		});
 	}
-	
 	
 	/*
 	 * Method to display an error message or messages in a label with a specified color.

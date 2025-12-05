@@ -1,5 +1,6 @@
 package gui.controllers;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -148,13 +149,13 @@ public class HomeScreenController {
 	 * @param event The action event triggered by clicking the button.
 	 */
 	public void btnExit(Event event) {
-		try {
-			BistroClientGUI.client.quit(); // Terminate the client connection
-			Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow(); // Get the current stage
-			currentStage.close(); // Close the current stage
-		} catch (Exception e) {
-			e.printStackTrace(); // Handle exceptions during quit
-		}
+		System.out.println("Exit Bistro Client successfully");
+		BistroClientGUI.client.notifyServerOnExit();
+		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		stage.close();
+		BistroClientGUI.client.quit();
+		Platform.exit();
+		System.exit(0);
 	}
 
 }

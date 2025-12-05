@@ -65,22 +65,6 @@ public class ServerConsoleController {
 				e.printStackTrace();
 				displayMessageToConsole("Error: Could not listen on port " + ServerPortFrameController.listeningPort);
 			}
-			// Start listening for client connections
-//			Thread startServerThread = new Thread(new Runnable() {
-//				@Override
-//				public void run() {
-//					try {
-//						BistroServerGUI.server.listen();
-//					} catch (Exception e) {
-//						e.printStackTrace();
-//						//Using Platform.runLater for updating UI components from a non-JavaFX thread to avoid concurrency issues.
-//						Platform.runLater(() -> displayMessageToConsole(
-//								"Error: Could not listen on port " + ServerPortFrameController.listeningPort));
-//					}
-//				}
-//			});
-//			startServerThread.setDaemon(true);
-//			startServerThread.start();
 		}
 	}
 
@@ -103,24 +87,9 @@ public class ServerConsoleController {
 				e.printStackTrace();
 				displayMessageToConsole("Error stopping server: " + e.getMessage() + "\n");
 			}
-			// Stop the server in a separate thread to avoid blocking the UI
-//			Thread stopServerThread = new Thread(new Runnable() {
-//				@Override
-//				public void run() {
-//					try {
-//						BistroServerGUI.server.close();
-//					} catch (Exception e) {
-//						e.printStackTrace();
-//						//Using Platform.runLater for updating UI components from a non-JavaFX thread to avoid concurrency issues.
-//						Platform.runLater(
-//								() -> displayMessageToConsole("Error stopping server: " + e.getMessage() + "\n"));
-//					}
-//				}
-//			});
-//			stopServerThread.setDaemon(true);
-//			stopServerThread.start();
 		}
 	}
+	
 
 	/*
 	 * Method to handle the Clear button click event. Clears the console log area.

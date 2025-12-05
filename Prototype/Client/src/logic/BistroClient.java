@@ -137,18 +137,21 @@ public class BistroClient extends AbstractClient {
 	}
 	
 	public void notifyServerOnExit() {
-		try {
-			handleMessageFromClientUI(new Message("disconnect", null));
-			if (messageFromServer.getId().equals("disconnectionDisplayed")) {
-				this.closeConnection();
-				System.out.println("Client Disconnected from server successfully.");
-			}
-		} catch (Exception e) {
-			e.printStackTrace(); // Handle errors during disconnection notification
-			System.out.println("Error: Could not notify server on exit." + e);
-		}
+	    try {
+	        sendToServer(new Message("disconnect", null));
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        System.out.println("Error: Could not notify server on exit." + e);
+	    }
+	    try {
+	        this.closeConnection();
+	        System.out.println("Client Disconnected from server successfully.");
+	    } catch (Exception e) {
+	        System.out.println("Error while closing connection: " + e.getMessage());
+	    }
 	}
-	
+
+
 	public void notifyServerOnConnection() {
 		try {
 			handleMessageFromClientUI(new Message("connect", null));

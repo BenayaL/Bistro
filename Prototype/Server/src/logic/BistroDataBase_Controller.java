@@ -18,7 +18,7 @@ import entities.Order;
  */
 public class BistroDataBase_Controller {
 	// Database connection parameters:
-	private static final String JDBC_URL = "jdbc:mysql://localhost:3306/bistro_protoype?allowLoadLocalInfile=true&serverTimezone=Asia/Jerusalem&useSSL=false";
+	private static final String JDBC_URL = "jdbc:mysql://localhost:3306/bistro_prototype?allowLoadLocalInfile=true&serverTimezone=Asia/Jerusalem&useSSL=false";
 	private static final String JDBC_USER = "root";
 	private static final String JDBC_PASS = "Aa123456";
 
