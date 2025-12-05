@@ -57,21 +57,30 @@ public class ServerConsoleController {
 				e.printStackTrace();
 				displayMessageToConsole("Error starting server: " + e.getMessage());
 			}
+			try {
+				BistroServerGUI.server.listen();
+				displayMessageToConsole(
+						"Server started and listening on port " + ServerPortFrameController.listeningPort);
+			} catch (Exception e) {
+				e.printStackTrace();
+				displayMessageToConsole("Error: Could not listen on port " + ServerPortFrameController.listeningPort);
+			}
 			// Start listening for client connections
-			Thread startServerThread = new Thread(new Runnable() {
-				@Override
-				public void run() {
-					try {
-						BistroServerGUI.server.listen();
-					} catch (Exception e) {
-						e.printStackTrace();
-						//Using Platform.runLater for updating UI components from a non-JavaFX thread to avoid concurrency issues.
-						Platform.runLater(() -> displayMessageToConsole(
-								"Error: Could not listen on port " + ServerPortFrameController.listeningPort));
-					}
-				}
-			});
-			startServerThread.start();
+//			Thread startServerThread = new Thread(new Runnable() {
+//				@Override
+//				public void run() {
+//					try {
+//						BistroServerGUI.server.listen();
+//					} catch (Exception e) {
+//						e.printStackTrace();
+//						//Using Platform.runLater for updating UI components from a non-JavaFX thread to avoid concurrency issues.
+//						Platform.runLater(() -> displayMessageToConsole(
+//								"Error: Could not listen on port " + ServerPortFrameController.listeningPort));
+//					}
+//				}
+//			});
+//			startServerThread.setDaemon(true);
+//			startServerThread.start();
 		}
 	}
 
@@ -88,21 +97,28 @@ public class ServerConsoleController {
 			displayMessageToConsole("Server is not running. Please start the server first.");
 		} else {
 			displayMessageToConsole("Stopping server...");
+			try {
+				BistroServerGUI.server.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+				displayMessageToConsole("Error stopping server: " + e.getMessage() + "\n");
+			}
 			// Stop the server in a separate thread to avoid blocking the UI
-			Thread stopServerThread = new Thread(new Runnable() {
-				@Override
-				public void run() {
-					try {
-						BistroServerGUI.server.close();
-					} catch (Exception e) {
-						e.printStackTrace();
-						//Using Platform.runLater for updating UI components from a non-JavaFX thread to avoid concurrency issues.
-						Platform.runLater(
-								() -> displayMessageToConsole("Error stopping server: " + e.getMessage() + "\n"));
-					}
-				}
-			});
-			stopServerThread.start();
+//			Thread stopServerThread = new Thread(new Runnable() {
+//				@Override
+//				public void run() {
+//					try {
+//						BistroServerGUI.server.close();
+//					} catch (Exception e) {
+//						e.printStackTrace();
+//						//Using Platform.runLater for updating UI components from a non-JavaFX thread to avoid concurrency issues.
+//						Platform.runLater(
+//								() -> displayMessageToConsole("Error stopping server: " + e.getMessage() + "\n"));
+//					}
+//				}
+//			});
+//			stopServerThread.setDaemon(true);
+//			stopServerThread.start();
 		}
 	}
 
@@ -167,7 +183,11 @@ public class ServerConsoleController {
 	 * @param message The message to be displayed.
 	 */
 	public void displayMessageToConsole(String message) {
-		txtLog.appendText(">" + message + "\n");
+		if(Platform.isFxApplicationThread()) {
+			txtLog.appendText(">" + message + "\n");
+		} else {
+			Platform.runLater(() -> txtLog.appendText(">" + message + "\n"));
+		}
 	}
 }
 //End of ServerConsoleController.java
