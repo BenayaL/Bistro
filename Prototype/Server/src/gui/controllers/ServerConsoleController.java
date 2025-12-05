@@ -160,6 +160,7 @@ public class ServerConsoleController {
 		}
 	}
 
+	
 	/*
 	 * Method to display a message in the console log area.
 	 * 

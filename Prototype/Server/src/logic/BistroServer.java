@@ -47,12 +47,13 @@ public class BistroServer extends AbstractServer {
 			String messageId = messageObj.getId();
 			String messageToDisplay;
 			// Log the received message:
-			System.out.print("message received: " + messageId + " from: " + client + "\n");
 			messageToDisplay = "Message received: " + messageId + " from: " + client;
+			System.out.print(messageToDisplay + "\n");
 			serverConsole.displayMessageToConsole(messageToDisplay);
 			// Handle different message IDs:
 			try {
 				switch (messageId) {
+				
 				// case client requests the full orders list.
 				case "getOrdersList":
 					// Retrieve all orders from the database:
@@ -63,6 +64,7 @@ public class BistroServer extends AbstractServer {
 							+ allOrders.size();
 					serverConsole.displayMessageToConsole(messageToDisplay);
 					return;
+					
 				// case client requests to update an order status.
 				case "updateOrderStatus":
 					// The client sends an Order object as the data field:
@@ -93,6 +95,7 @@ public class BistroServer extends AbstractServer {
 						serverConsole.displayMessageToConsole(messageToDisplay);
 					}
 					return;
+					
 				// case client request an order by confirmation code.
 				case "getOrderByConfirmationCode":
 					// The client sends an integer confirmation code as the data field:
@@ -103,19 +106,21 @@ public class BistroServer extends AbstractServer {
 					messageToDisplay = client + " requested order with confirmation code: " + confirmationCode;
 					serverConsole.displayMessageToConsole(messageToDisplay);
 					return;
+					
 				case "connect":
 					// Log the connection:
-					System.out.print(client + " has connected.\n");
 					messageToDisplay = client + " has connected.";
 					serverConsole.displayMessageToConsole(messageToDisplay);
 					client.sendToClient(new Message("connectionDisplayed",null));
 					return;
+					
 				case "disconnect":
 					// Log the disconnection:
 					messageToDisplay = client + " has disconnected.";
 					serverConsole.displayMessageToConsole(messageToDisplay);
 					client.close(); // Close the client connection
 					return;
+					
 				// Default case when client request and unknownCommand.	
 				default:
 					client.sendToClient(new Message("unknownCommand", "Unknown command: " + messageId));
@@ -147,7 +152,7 @@ public class BistroServer extends AbstractServer {
 	
 	
 	/*
-	 * Method called when the server stops.
+	 * Method called when the server stops to close the database connection.
 	 */
 	protected void serverStopped() {
 		System.out.println("Server stopped");

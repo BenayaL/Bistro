@@ -46,7 +46,7 @@ public class ServerPortFrameController {
 		int intPort;
 		// Validate port number
 		try {
-			intPort = Integer.parseInt(txtPort.getText());
+			intPort = Integer.parseInt(port);
 		} catch (NumberFormatException e) {
 			BistroServerGUI.display(lblError," Invalid port number. Please enter a valid integer.", Color.RED);
 			return;

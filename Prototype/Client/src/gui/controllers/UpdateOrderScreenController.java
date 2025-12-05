@@ -217,8 +217,8 @@ public class UpdateOrderScreenController {
 
 	    if (order != null) {
 	        currentOrder = order;
-
-	        if (order.getOrderDate() != null) {
+	        
+	        if (order.getOrderDate() != null) {// Set order date if not null
 	            dpOrderDate.setValue(order.getOrderDate().toLocalDate());
 	        } else {
 	            dpOrderDate.setValue(null);

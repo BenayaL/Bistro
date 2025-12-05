@@ -80,19 +80,15 @@ public class ServerConnectionFrameController {
 				FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/fxml/"+ "HomeScreen" +".fxml"));
 				Parent root = loader.load();
 				BistroClientGUI.client.switchScreen(loader, root, event, "Home Screen");
-
-				
-				
-				
 			} catch (Exception e) {
 				// Handles connection errors
 				System.out.println("Error: Can't setup connection! \nThe error message: ");
 				e.printStackTrace();
 				display(lblError,"Can't setup connection", Color.RED); // Displays an error message.
-				
 			}
 		}
 	}
+	
 	
 	/*
 	 * Method to handle the Reset button click event.
@@ -106,6 +102,7 @@ public class ServerConnectionFrameController {
 	    txtPort.clear();
 	    lblError.setText("");
 	}
+	
 	
 	/*
 	 * Method to handle the Exit button click event.
@@ -121,6 +118,7 @@ public class ServerConnectionFrameController {
 		stage.close();
 		System.exit(0);
 	}
+	
 	
 	/*
 	 * Method to start the Server Connection screen.
@@ -162,6 +160,7 @@ public class ServerConnectionFrameController {
 		});
 	}
 	
+	
 	/*
 	 * Method to display an error message or messages in a label with a specified color.
 	 * 
@@ -174,3 +173,4 @@ public class ServerConnectionFrameController {
 		lblError.setTextFill(color); // Sets the text color for the error message
 	}
 }
+// End of ServerConnectionFrameController.java
