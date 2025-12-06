@@ -7,21 +7,16 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.effect.GaussianBlur;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import logic.BistroClientGUI;
-import clientserver.Message;
 import java.io.IOException;
 
 public class HomeScreenController {
@@ -49,14 +44,13 @@ public class HomeScreenController {
 
 	@FXML
 	private StackPane modalOverlay; // Overlay pane for modals
-	
+
 	@FXML
 	private Rectangle overlayBackground;
 
 	private Parent connectionStatusRoot; // Root node for connection status window
 
 	private ConnectionStatusWindowController connectionStatusCTRL; // Controller for connection status window
-	
 
 	/*
 	 * Method to handle View Orders button click and load the update order screen
@@ -68,9 +62,9 @@ public class HomeScreenController {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/fxml/" + "ViewOrdersScreen" + ".fxml"));
 		try {
 			Parent root = loader.load();
-			
+
 			BistroClientGUI.client.switchScreen(loader, root, event, "ViewOrders Screen");
-			
+
 		} catch (IOException e) {
 			System.out.println("Error: Can't load ViewOrders Screen: ");
 			e.printStackTrace();
@@ -91,8 +85,7 @@ public class HomeScreenController {
 			Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
 			stage.centerOnScreen();
 			BistroClientGUI.client.switchScreen(loader, root, event, "Update Order");
-			
-			
+
 		} catch (IOException e) {
 			System.out.println("Error: Can't load UpdateOrder Screen");
 			BistroClientGUI.client.display(lblError, "Can't load Screen!", Color.RED); // Displays an error message.
@@ -124,14 +117,14 @@ public class HomeScreenController {
 			// Add the connection status root to the modal overlay for blur effect
 			modalOverlay.getChildren().add(connectionStatusRoot);
 		}
-			modalOverlay.setVisible(true);
-			modalOverlay.setManaged(true);
-			mainPane.setEffect(new GaussianBlur(15));
-			if (host == null) {
-				connectionStatusCTRL.setConnectionDetails("Not connected", 0, "Disconnected", Color.RED);
-			} else {
-				connectionStatusCTRL.setConnectionDetails(host, port, "Connected", Color.GREEN);
-			}
+		modalOverlay.setVisible(true);
+		modalOverlay.setManaged(true);
+		mainPane.setEffect(new GaussianBlur(15));
+		if (host == null) {
+			connectionStatusCTRL.setConnectionDetails("Not connected", 0, "Disconnected", Color.RED);
+		} else {
+			connectionStatusCTRL.setConnectionDetails(host, port, "Connected", Color.GREEN);
+		}
 	}
 
 	/*

@@ -10,61 +10,81 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<StackPane maxHeight="520.0" maxWidth="-Infinity" stylesheets="@/gui/css/styles.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controllers.HomeScreenController">
+<StackPane maxHeight="520.0" maxWidth="-Infinity"
+	stylesheets="@/gui/css/styles.css" xmlns="http://javafx.com/javafx/25"
+	xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="gui.controllers.HomeScreenController">
 
-    <children>
-        <BorderPane fx:id="mainPane" minHeight="360.0" minWidth="460.0">
-            <center>
-                <VBox alignment="CENTER" prefHeight="520.0" prefWidth="520.0">
-                    <children>
+	<children>
+		<BorderPane fx:id="mainPane" minHeight="360.0"
+			minWidth="460.0">
+			<center>
+				<VBox alignment="CENTER" prefHeight="520.0" prefWidth="520.0">
+					<children>
 
-                        <ImageView fitHeight="336.0" fitWidth="336.0">
-                            <image>
-                                <Image url="@/resources/bistroLogo.png" />
-                            </image>
-                        </ImageView>
+						<ImageView fitHeight="336.0" fitWidth="336.0">
+							<image>
+								<Image url="@/resources/bistroLogo.png" />
+							</image>
+						</ImageView>
 
-                        <HBox alignment="TOP_CENTER" prefHeight="47.0" prefWidth="829.0" spacing="30.0">
-                            <children>
-                                <Button fx:id="btnViewOrders" mnemonicParsing="false" onAction="#btnViewOrders" styleClass="button-primary" text="View Orders" />
-                                <Button fx:id="btnUpdateOrder" mnemonicParsing="false" onAction="#btnUpdateOrder" styleClass="button-primary" text="Update Order" />
-                        <Button fx:id="btnExit" mnemonicParsing="false" onAction="#btnExit"  styleClass="button-primary"  text="Exit" />
-                            </children>
-                        </HBox>
-                  <HBox alignment="TOP_CENTER" layoutX="10.0" layoutY="398.0" prefHeight="47.0" prefWidth="829.0" spacing="30.0">
-                     <children>
-                        <Label fx:id="lblError" alignment="CENTER" prefWidth="400.0" text="" textFill="RED" />
-                     </children>
-                  </HBox>
+						<HBox alignment="TOP_CENTER" prefHeight="47.0"
+							prefWidth="829.0" spacing="30.0">
+							<children>
+								<Button fx:id="btnViewOrders" mnemonicParsing="false"
+									onAction="#btnViewOrders" styleClass="button-primary"
+									text="View Orders" />
+								<Button fx:id="btnUpdateOrder" mnemonicParsing="false"
+									onAction="#btnUpdateOrder" styleClass="button-primary"
+									text="Update Order" />
+								<Button fx:id="btnExit" mnemonicParsing="false"
+									onAction="#btnExit" styleClass="button-primary" text="Exit" />
+							</children>
+						</HBox>
+						<HBox alignment="TOP_CENTER" layoutX="10.0" layoutY="398.0"
+							prefHeight="47.0" prefWidth="829.0" spacing="30.0">
+							<children>
+								<Label fx:id="lblError" alignment="CENTER"
+									prefWidth="400.0" text="" textFill="RED" />
+							</children>
+						</HBox>
 
-                    </children>
-                </VBox>
-            </center>
+					</children>
+				</VBox>
+			</center>
 
-            <bottom>
-                <VBox prefHeight="23.0" prefWidth="829.0" spacing="5.0" BorderPane.alignment="CENTER">
-                    <children>
+			<bottom>
+				<VBox prefHeight="23.0" prefWidth="829.0" spacing="5.0"
+					BorderPane.alignment="CENTER">
+					<children>
 
-                        <HBox alignment="CENTER" spacing="300.0">
-                            <children>
-                                <Button fx:id="btnConnectionStatus" alignment="CENTER" mnemonicParsing="false" onAction="#btnConnectionStatus" prefHeight="29.0" prefWidth="124.0" styleClass="button-primary" text="Connection Status">
-                           <HBox.margin>
-                              <Insets left="10.0" />
-                           </HBox.margin></Button>
-                                <Label alignment="BOTTOM_RIGHT" text="© 2025 Bistro Management System – All rights reserved · v0.1 Prototype.">
-                           <HBox.margin>
-                              <Insets right="10.0" />
-                           </HBox.margin></Label>
-                            </children>
-                     <VBox.margin>
-                        <Insets bottom="8.0" />
-                     </VBox.margin>
-                        </HBox>
-                    </children>
-                </VBox>
-            </bottom>
-        </BorderPane>
-        <StackPane fx:id="modalOverlay" managed="false" style="-fx-alignment: center;" visible="false">
-        </StackPane>
-    </children>
+						<HBox alignment="CENTER" spacing="300.0">
+							<children>
+								<Button fx:id="btnConnectionStatus" alignment="CENTER"
+									mnemonicParsing="false" onAction="#btnConnectionStatus"
+									prefHeight="29.0" prefWidth="124.0" styleClass="button-primary"
+									text="Connection Status">
+									<HBox.margin>
+										<Insets left="10.0" />
+									</HBox.margin>
+								</Button>
+								<Label alignment="BOTTOM_RIGHT"
+									text="© 2025 Bistro Management System – All rights reserved · v0.1 Prototype.">
+									<HBox.margin>
+										<Insets right="10.0" />
+									</HBox.margin>
+								</Label>
+							</children>
+							<VBox.margin>
+								<Insets bottom="8.0" />
+							</VBox.margin>
+						</HBox>
+					</children>
+				</VBox>
+			</bottom>
+		</BorderPane>
+		<StackPane fx:id="modalOverlay" managed="false"
+			style="-fx-alignment: center;" visible="false">
+		</StackPane>
+	</children>
 </StackPane>

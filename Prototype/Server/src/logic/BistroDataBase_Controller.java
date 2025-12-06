@@ -6,7 +6,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +17,7 @@ import entities.Order;
  */
 public class BistroDataBase_Controller {
 	// Database connection parameters:
-	private static final String JDBC_URL = "jdbc:mysql://localhost:3306/bistro_prototype?allowLoadLocalInfile=true&serverTimezone=Asia/Jerusalem&useSSL=false";
+	private static final String JDBC_URL = "jdbc:mysql://localhost:3306/bistro_prototype?allowLoadLocalInfile=true&serverTimezone=Asia/Jerusalem&useSSL=false&allowPublicKeyRetrieval=true";
 	private static final String JDBC_USER = "root";
 	private static final String JDBC_PASS = "Aa123456";
 

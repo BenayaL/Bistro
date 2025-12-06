@@ -14,80 +14,119 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="800.0" minWidth="1280.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controllers.UpdateOrderScreenController">
-    <top>
-        <ImageView fitHeight="212.0" fitWidth="212.0" BorderPane.alignment="TOP_LEFT">
-            <image>
-                <Image url="@/resources/bistroLogo.png" />
-            </image>
-        </ImageView>
-    </top>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity"
+	minHeight="800.0" minWidth="1280.0" stylesheets="@../css/styles.css"
+	xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="gui.controllers.UpdateOrderScreenController">
+	<top>
+		<ImageView fitHeight="212.0" fitWidth="212.0"
+			BorderPane.alignment="TOP_LEFT">
+			<image>
+				<Image url="@/resources/bistroLogo.png" />
+			</image>
+		</ImageView>
+	</top>
 
-    <left>
-        <VBox prefHeight="588.0" prefWidth="122.0" spacing="10.0" BorderPane.alignment="CENTER">
-            <children>
+	<left>
+		<VBox prefHeight="588.0" prefWidth="122.0" spacing="10.0"
+			BorderPane.alignment="CENTER">
+			<children>
 
-                <Button fx:id="btnHome" mnemonicParsing="false" onAction="#btnHome" styleClass="button-primary" text="Home">
-                    <VBox.margin>
-                        <Insets left="65.0" />
-                    </VBox.margin>
-                </Button>
+				<Button fx:id="btnHome" mnemonicParsing="false"
+					onAction="#btnHome" styleClass="button-primary" text="Home">
+					<VBox.margin>
+						<Insets left="65.0" />
+					</VBox.margin>
+				</Button>
 
-            </children>
-        </VBox>
-    </left>
+			</children>
+		</VBox>
+	</left>
 
-    <center>
-    <GridPane alignment="CENTER" hgap="20" vgap="15" BorderPane.alignment="CENTER">
-        <columnConstraints>
-            <ColumnConstraints halignment="RIGHT" minWidth="150.0" />
-            <ColumnConstraints maxWidth="-Infinity" minWidth="100.0" prefWidth="180.0" />
-            <ColumnConstraints maxWidth="-Infinity" minWidth="80.0" prefWidth="80.0" />
-        </columnConstraints>
+	<center>
+		<GridPane alignment="CENTER" hgap="20" vgap="15"
+			BorderPane.alignment="CENTER">
+			<columnConstraints>
+				<ColumnConstraints halignment="RIGHT"
+					minWidth="150.0" />
+				<ColumnConstraints maxWidth="-Infinity"
+					minWidth="100.0" prefWidth="180.0" />
+				<ColumnConstraints maxWidth="-Infinity"
+					minWidth="80.0" prefWidth="80.0" />
+			</columnConstraints>
 
-        <children>
-            <Label text="Confirmation code :" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+			<children>
+				<Label text="Confirmation code :" GridPane.columnIndex="0"
+					GridPane.rowIndex="0" />
 
-            <TextField fx:id="txtConfirmCode" prefHeight="25.0" prefWidth="274.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+				<TextField fx:id="txtConfirmCode" prefHeight="25.0"
+					prefWidth="274.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
 
-            <Button fx:id="btnCheckCode" onAction="#btnCheckCode" prefHeight="25.0" prefWidth="80.0" styleClass="button-secondary" text="Check" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+				<Button fx:id="btnCheckCode" onAction="#btnCheckCode"
+					prefHeight="25.0" prefWidth="80.0" styleClass="button-secondary"
+					text="Check" GridPane.columnIndex="2" GridPane.rowIndex="0" />
 
-            <Label text="Member ID:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-            <TextField fx:id="txtMemberId" editable="false" focusTraversable="false" prefHeight="25.0" prefWidth="180.0" style="-fx-opacity: 0.6;" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+				<Label text="Member ID:" GridPane.columnIndex="0"
+					GridPane.rowIndex="1" />
+				<TextField fx:id="txtMemberId" editable="false"
+					focusTraversable="false" prefHeight="25.0" prefWidth="180.0"
+					style="-fx-opacity: 0.6;" GridPane.columnIndex="1"
+					GridPane.columnSpan="2" GridPane.rowIndex="1" />
 
-            <Label text="Order placed on:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-            <TextField fx:id="txtOrderDatePlaced" editable="false" focusTraversable="false" prefHeight="25.0" prefWidth="180.0" style="-fx-opacity: 0.6;" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2" />
+				<Label text="Order placed on:" GridPane.columnIndex="0"
+					GridPane.rowIndex="2" />
+				<TextField fx:id="txtOrderDatePlaced" editable="false"
+					focusTraversable="false" prefHeight="25.0" prefWidth="180.0"
+					style="-fx-opacity: 0.6;" GridPane.columnIndex="1"
+					GridPane.columnSpan="2" GridPane.rowIndex="2" />
 
-            <Label text="Date:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
-            <DatePicker fx:id="dpOrderDate" disable="true" prefHeight="25.0" prefWidth="180.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3" />
+				<Label text="Date:" GridPane.columnIndex="0"
+					GridPane.rowIndex="3" />
+				<DatePicker fx:id="dpOrderDate" disable="true"
+					prefHeight="25.0" prefWidth="180.0" GridPane.columnIndex="1"
+					GridPane.columnSpan="2" GridPane.rowIndex="3" />
 
-            <Label text="Number of guests:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
-            <TextField fx:id="txtNumberOfGuests" disable="true" prefHeight="25.0" prefWidth="180.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="4" />
+				<Label text="Number of guests:" GridPane.columnIndex="0"
+					GridPane.rowIndex="4" />
+				<TextField fx:id="txtNumberOfGuests" disable="true"
+					prefHeight="25.0" prefWidth="180.0" GridPane.columnIndex="1"
+					GridPane.columnSpan="2" GridPane.rowIndex="4" />
 
 
-            <HBox alignment="CENTER" spacing="20.0" GridPane.columnIndex="0" GridPane.columnSpan="3" GridPane.rowIndex="5">
-                <children>
-                    <Button fx:id="btnUpdate" disable="true" onAction="#btnUpdate" prefHeight="27.0" prefWidth="65.0" styleClass="button-secondary" text="Update" />
-                    <Button fx:id="btnReset" onAction="#btnReset" prefHeight="27.0" prefWidth="65.0" styleClass="button-secondary" text="Reset" />
-                </children>
-            </HBox>
+				<HBox alignment="CENTER" spacing="20.0"
+					GridPane.columnIndex="0" GridPane.columnSpan="3"
+					GridPane.rowIndex="5">
+					<children>
+						<Button fx:id="btnUpdate" disable="true"
+							onAction="#btnUpdate" prefHeight="27.0" prefWidth="65.0"
+							styleClass="button-secondary" text="Update" />
+						<Button fx:id="btnReset" onAction="#btnReset"
+							prefHeight="27.0" prefWidth="65.0" styleClass="button-secondary"
+							text="Reset" />
+					</children>
+				</HBox>
 
-            <Label fx:id="lblError" style="-fx-text-fill: red; -fx-font-weight: bold;" text="" GridPane.columnIndex="0" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
-        </children>
-         <rowConstraints>
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-         </rowConstraints>
-    </GridPane>
-</center>
+				<Label fx:id="lblError"
+					style="-fx-text-fill: red; -fx-font-weight: bold;" text=""
+					GridPane.columnIndex="0" GridPane.columnSpan="3"
+					GridPane.halignment="CENTER" GridPane.rowIndex="6" />
+			</children>
+			<rowConstraints>
+				<RowConstraints />
+				<RowConstraints />
+				<RowConstraints />
+				<RowConstraints />
+				<RowConstraints />
+				<RowConstraints />
+				<RowConstraints />
+			</rowConstraints>
+		</GridPane>
+	</center>
 
-    <bottom>
-        <Label text="© 2025 Bistro Management System – All rights reserved · v0.1 Prototype." BorderPane.alignment="TOP_RIGHT" />
-    </bottom>
+	<bottom>
+		<Label
+			text="© 2025 Bistro Management System – All rights reserved · v0.1 Prototype."
+			BorderPane.alignment="TOP_RIGHT" />
+	</bottom>
 
 </BorderPane>

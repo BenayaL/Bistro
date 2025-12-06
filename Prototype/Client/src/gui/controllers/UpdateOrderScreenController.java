@@ -15,61 +15,59 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
-import javafx.util.Callback;
 import logic.BistroClientGUI;
 
 /**
- * Controller for the Update Order Screen.
- * Allows users to update existing orders by providing a confirmation code.
+ * Controller for the Update Order Screen. Allows users to update existing
+ * orders by providing a confirmation code.
  */
 public class UpdateOrderScreenController {
-	
+
 	@FXML
 	private Button btnUpdate; // Button to update the order
-	
+
 	@FXML
 	private Button btnReset; // Button to reset the form
-	
+
 	@FXML
 	private Button btnHome; // Button to return to home screen
-	
-	@FXML 
+
+	@FXML
 	private Button btnCheckCode; // Button to check confirmation code
-	
+
 	@FXML
 	private Label lblError; // Label for displaying errors
-	
+
 	@FXML
 	private TextField txtConfirmCode; // TextField for confirmation code
-	
+
 	@FXML
 	private DatePicker dpOrderDate; // DatePicker for order date
-	
+
 	@FXML
 	private TextField txtNumberOfGuests; // TextField for number of guests
-	
+
 	@FXML
 	private TextField txtMemberId; // TextField for member ID (read-only)
-	
+
 	@FXML
 	private TextField txtOrderDatePlaced; // TextField for date order was placed (read-only)
 
 	// The currently loaded order (after a successful check)
 	private Order currentOrder;
-	
-	
+
 	/**
-	 * Initialize UI state.
-	 * Disable fields that should only be used after a valid confirmation code.
+	 * Initialize UI state. Disable fields that should only be used after a valid
+	 * confirmation code.
 	 */
 	@FXML
 	public void initialize() {
 		// These are only editable after a successful confirmation code check
 		dpOrderDate.setValue(LocalDate.now());
 		// Disable past dates in the DatePicker
-		dpOrderDate.setDayCellFactory(picker -> new DateCell() { // Custom cell factory to disable past dates
+		dpOrderDate.setDayCellFactory(_ -> new DateCell() { // Custom cell factory to disable past dates
 			// Override updateItem to disable past dates
-			@Override 
+			@Override
 			public void updateItem(LocalDate date, boolean empty) {
 				super.updateItem(date, empty);
 				if (date.isBefore(LocalDate.now())) {
@@ -92,7 +90,7 @@ public class UpdateOrderScreenController {
 			txtOrderDatePlaced.setFocusTraversable(false);
 		}
 	}
-	
+
 	/*
 	 * Method to handle Home button click and load the home screen
 	 */
@@ -114,10 +112,6 @@ public class UpdateOrderScreenController {
 	 */
 	@FXML
 	public void btnUpdate(Event event) {
-//		if (currentOrder == null) {
-//			lblError.setText("You must load an order first.");
-//			return;
-//		}
 
 		int confirmCode;
 		LocalDate orderDateLocal = dpOrderDate.getValue();
@@ -139,7 +133,7 @@ public class UpdateOrderScreenController {
 			return;
 		}
 		// Validate number of guests range
-		if (numberOfGuests <=0 || numberOfGuests > 20) {
+		if (numberOfGuests <= 0 || numberOfGuests > 20) {
 			BistroClientGUI.client.display(lblError, "Number of guests must be between 1 and 20.", Color.RED);
 			return;
 		}
@@ -152,123 +146,121 @@ public class UpdateOrderScreenController {
 		Date orderDate = Date.valueOf(orderDateLocal);
 
 		// Keep original order information from currentOrder
-		int orderNumber   = currentOrder.getOrderID();
-		int memberId      = currentOrder.getMemberID();
+		int orderNumber = currentOrder.getOrderID();
+		int memberId = currentOrder.getMemberID();
 		Date placingOrder = currentOrder.getPlacingOrderDate();
 
 		// Prepare data for order update request
-		Order orderUpdateData = new Order(
-				orderNumber,     // orderNumber
-				orderDate,       // new orderDate
-				numberOfGuests,  // dinersAmount
-				confirmCode,     // confimationCode
-				memberId,        // memberId
-				placingOrder     // placingOrderDate
+		Order orderUpdateData = new Order(orderNumber, // orderNumber
+				orderDate, // new orderDate
+				numberOfGuests, // dinersAmount
+				confirmCode, // confimationCode
+				memberId, // memberId
+				placingOrder // placingOrderDate
 		);
-		
+
 		// Send order update request to server and handle response
 		String response = BistroClientGUI.client.sendOrderUpdateRequest(orderUpdateData);
 
 		switch (response) {
-			case "updateOrderSuccess":
-				System.out.println("Order updated successfully on server.");
-				BistroClientGUI.client.display(lblError, "Order updated successfully.", Color.GREEN);
-				break;
+		case "updateOrderSuccess":
+			System.out.println("Order updated successfully on server.");
+			BistroClientGUI.client.display(lblError, "Order updated successfully.", Color.GREEN);
+			break;
 
-			case "dateNotAvailable":
-				System.out.println("The specified date is not available.");
-				BistroClientGUI.client.display(lblError, "The specified date is not available.", Color.RED);
-				break;
+		case "dateNotAvailable":
+			System.out.println("The specified date is not available.");
+			BistroClientGUI.client.display(lblError, "The specified date is not available.", Color.RED);
+			break;
 
-			case "invalidConfirmCode":
-				System.out.println("Invalid confirmation code provided.");
-				BistroClientGUI.client.display(lblError, "Invalid confirmation code.", Color.RED);
-				break;
+		case "invalidConfirmCode":
+			System.out.println("Invalid confirmation code provided.");
+			BistroClientGUI.client.display(lblError, "Invalid confirmation code.", Color.RED);
+			break;
 
-			default:
-				System.out.println("Unexpected response from server: " + response);
-				BistroClientGUI.client.display(lblError, "Unexpected error occurred.", Color.RED);
-				break;
+		default:
+			System.out.println("Unexpected response from server: " + response);
+			BistroClientGUI.client.display(lblError, "Unexpected error occurred.", Color.RED);
+			break;
 		}
 	}
-	
+
 	/*
 	 * Method to handle Reset button click and clear the form fields
 	 */
 	@FXML
 	public void btnReset(Event event) {
-	    txtConfirmCode.clear();
-	    dpOrderDate.setValue(null);
-	    txtNumberOfGuests.clear();
-	    txtMemberId.clear();
-	    txtOrderDatePlaced.clear();
-	    lblError.setText("");
-	    currentOrder = null;
+		txtConfirmCode.clear();
+		dpOrderDate.setValue(null);
+		txtNumberOfGuests.clear();
+		txtMemberId.clear();
+		txtOrderDatePlaced.clear();
+		lblError.setText("");
+		currentOrder = null;
 
-	    // Return to initial disabled state
-	    dpOrderDate.setDisable(true);
-	    txtNumberOfGuests.setDisable(true);
-	    btnUpdate.setDisable(true);
-	    
-	    // Allow user to type a new confirmation code
-	    txtConfirmCode.setDisable(false);
+		// Return to initial disabled state
+		dpOrderDate.setDisable(true);
+		txtNumberOfGuests.setDisable(true);
+		btnUpdate.setDisable(true);
+
+		// Allow user to type a new confirmation code
+		txtConfirmCode.setDisable(false);
 	}
-	
+
 	/**
 	 * Checks the confirmation code with the server and, if valid, populates fields
 	 * and enables editing of date/guests + Update button.
 	 */
 	@FXML
 	public void btnCheckCode(Event event) {
-	    int confirmCode;
+		int confirmCode;
 
-	    try {
-	        confirmCode = Integer.parseInt(txtConfirmCode.getText().trim());
-	    } catch (NumberFormatException e) {
-	        lblError.setText("Confirmation code must be a number.");
-	        disableEditableFields();
-	        clearOrderDetails();
-	        currentOrder = null;
-	        return;
-	    }
+		try {
+			confirmCode = Integer.parseInt(txtConfirmCode.getText().trim());
+		} catch (NumberFormatException e) {
+			BistroClientGUI.client.display(lblError, "Confirmation code must be a number.", Color.RED);
+			disableEditableFields();
+			clearOrderDetails();
+			currentOrder = null;
+			return;
+		}
 
-	    Order order = BistroClientGUI.client.getOrderByConfirmationCode(confirmCode);
+		Order order = BistroClientGUI.client.getOrderByConfirmationCode(confirmCode);
 
-	    if (order != null) {
-	        currentOrder = order;
-	        
-	        if (order.getOrderDate() != null) {// Set order date if not null
-	            dpOrderDate.setValue(order.getOrderDate().toLocalDate());
-	        } else {
-	            dpOrderDate.setValue(null);
-	        }
-	        
-	        txtNumberOfGuests.setText(String.valueOf(order.getDinersAmount()));
-	        txtMemberId.setText(String.valueOf(order.getMemberID()));
+		if (order != null) {
+			currentOrder = order;
 
-	        if (order.getPlacingOrderDate() != null) {
-	            txtOrderDatePlaced.setText(order.getPlacingOrderDate().toString());
-	        } else {
-	            txtOrderDatePlaced.setText("");
-	        }
+			if (order.getOrderDate() != null) {// Set order date if not null
+				dpOrderDate.setValue(order.getOrderDate().toLocalDate());
+			} else {
+				dpOrderDate.setValue(null);
+			}
 
-	        // Disable confirmation code once a valid order is loaded
-	        txtConfirmCode.setDisable(true);
+			txtNumberOfGuests.setText(String.valueOf(order.getDinersAmount()));
+			txtMemberId.setText(String.valueOf(order.getMemberID()));
 
-	        dpOrderDate.setDisable(false);
-	        txtNumberOfGuests.setDisable(false);
-	        btnUpdate.setDisable(false);
+			if (order.getPlacingOrderDate() != null) {
+				txtOrderDatePlaced.setText(order.getPlacingOrderDate().toString());
+			} else {
+				txtOrderDatePlaced.setText("");
+			}
 
-	        BistroClientGUI.client.display(lblError, "Order found.", Color.GREEN);
-	    } else {
-	        BistroClientGUI.client.display(lblError, "No order found with the provided confirmation code.", Color.RED);
-	        disableEditableFields();
-	        clearOrderDetails();
-	        currentOrder = null;
-	        // keep txtConfirmCode enabled so user can try again
-	    }
+			// Disable confirmation code once a valid order is loaded
+			txtConfirmCode.setDisable(true);
+
+			dpOrderDate.setDisable(false);
+			txtNumberOfGuests.setDisable(false);
+			btnUpdate.setDisable(false);
+
+			BistroClientGUI.client.display(lblError, "Order found.", Color.GREEN);
+		} else {
+			BistroClientGUI.client.display(lblError, "No order found with the provided confirmation code.", Color.RED);
+			disableEditableFields();
+			clearOrderDetails();
+			currentOrder = null;
+			// keep txtConfirmCode enabled so user can try again
+		}
 	}
-
 
 	// Helper to disable fields that depend on a valid code
 	private void disableEditableFields() {

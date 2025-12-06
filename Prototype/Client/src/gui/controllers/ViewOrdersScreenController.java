@@ -21,42 +21,41 @@ import java.util.List;
 import entities.*;
 
 /**
- * Controller for the View Orders Screen.
- * Allows users to view existing orders in a table format.
+ * Controller for the View Orders Screen. Allows users to view existing orders
+ * in a table format.
  */
 public class ViewOrdersScreenController {
-	
+
 	@FXML
 	private Button btnHome; // Button to return to home screen
-	
+
 	@FXML
 	private Button btnUpdateOrder; // Button to view orders
-	
+
 	@FXML
 	private Label lblError; // Label for displaying errors
-	
+
 	@FXML
 	private TableView<Order> ordersTableView; // TableView to display orders
-	
+
 	@FXML
 	private TableColumn<Order, Integer> orderNumberCol; // Column for order numbers
-	
+
 	@FXML
 	private TableColumn<Order, LocalDate> orderDateCol; // Column for order dates
-	
+
 	@FXML
 	private TableColumn<Order, Integer> guestsAmountCol; // Column for number of guests
-	
+
 	@FXML
 	private TableColumn<Order, LocalDate> placingOrderDateCol; // Column for place order dates
-	
+
 	@FXML
 	private TableColumn<Order, Integer> memberIDCol; // Column for member IDs
-	
+
 	@FXML
 	private TableColumn<Order, Integer> confirmCodeCol; // Column for member IDs
-	
-	
+
 	@FXML
 	public void initialize() {
 		orderNumberCol.setCellValueFactory(new PropertyValueFactory<>("orderID"));
@@ -64,12 +63,11 @@ public class ViewOrdersScreenController {
 		guestsAmountCol.setCellValueFactory(new PropertyValueFactory<>("dinersAmount"));
 		placingOrderDateCol.setCellValueFactory(new PropertyValueFactory<>("placingOrderDate"));
 		memberIDCol.setCellValueFactory(new PropertyValueFactory<>("memberID"));
-		confirmCodeCol.setCellValueFactory(new PropertyValueFactory<>("confirmationCode")); 
+		confirmCodeCol.setCellValueFactory(new PropertyValueFactory<>("confirmationCode"));
 
 		loadOrdersTable();
 	}
-	
-	
+
 	@FXML
 	public void btnHome(Event event) {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/fxml/HomeScreen.fxml"));
@@ -82,32 +80,31 @@ public class ViewOrdersScreenController {
 			BistroClientGUI.client.display(lblError, "Can't load Screen!", Color.RED);
 		}
 	}
-	
+
 	@FXML
 	public void loadOrdersTable() {
 		List<Order> ordersList = BistroClientGUI.client.getOrdersListFromServer();
-		
+
 		if (ordersList != null) {
-			ObservableList<Order> ordersDataFromServer =
-					FXCollections.observableArrayList(ordersList);
-			
+			ObservableList<Order> ordersDataFromServer = FXCollections.observableArrayList(ordersList);
+
 			ordersTableView.setItems(ordersDataFromServer);
 		} else {
 			BistroClientGUI.client.display(lblError, "Could not retrieve orders list from server.", Color.RED);
 		}
 	}
-	
+
 	@FXML
 	public void btnUpdateOrder(Event event) {
-	    FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/fxml/UpdateOrderScreen.fxml"));
-	    try {
-	        loader.load();
-	        Parent root = loader.getRoot();
-	        BistroClientGUI.client.switchScreen(loader, root, event, "Update Order");
-	    } catch (IOException e) {
-	        System.out.println("Error: Cannot load View Orders screen");
-	        BistroClientGUI.client.display(lblError, "Cannot load screen.", Color.RED);
-	    }
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/fxml/UpdateOrderScreen.fxml"));
+		try {
+			loader.load();
+			Parent root = loader.getRoot();
+			BistroClientGUI.client.switchScreen(loader, root, event, "Update Order");
+		} catch (IOException e) {
+			System.out.println("Error: Cannot load View Orders screen");
+			BistroClientGUI.client.display(lblError, "Cannot load screen.", Color.RED);
+		}
 	}
 
 }

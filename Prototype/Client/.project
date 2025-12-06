@@ -3,6 +3,9 @@
 	<name>Client</name>
 	<comment></comment>
 	<projects>
+		<project>Common</project>
+		<project>OCSF</project>
+		<project>Server</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

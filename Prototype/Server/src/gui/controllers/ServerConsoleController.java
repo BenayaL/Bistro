@@ -4,7 +4,6 @@ import javafx.application.Platform;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import logic.BistroServer;
@@ -51,7 +50,7 @@ public class ServerConsoleController {
 			displayMessageToConsole("Starting server...");
 			// Start the server in a separate thread to avoid blocking the javafx UI thread:
 			try {
-				//create a new server singleton instance:
+				// create a new server singleton instance:
 				BistroServerGUI.server = new BistroServer(ServerPortFrameController.listeningPort, this);
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -59,8 +58,6 @@ public class ServerConsoleController {
 			}
 			try {
 				BistroServerGUI.server.listen();
-				displayMessageToConsole(
-						"Server started and listening on port " + ServerPortFrameController.listeningPort);
 			} catch (Exception e) {
 				e.printStackTrace();
 				displayMessageToConsole("Error: Could not listen on port " + ServerPortFrameController.listeningPort);
@@ -89,7 +86,6 @@ public class ServerConsoleController {
 			}
 		}
 	}
-	
 
 	/*
 	 * Method to handle the Clear button click event. Clears the console log area.
@@ -109,50 +105,67 @@ public class ServerConsoleController {
 	 */
 	@FXML
 	public void btnSend(Event event) {
-		String cmd = txtCommand.getText();
-		if (BistroServerGUI.server == null && !BistroServerGUI.server.isListening()) {
-			displayMessageToConsole("Server is not running. Please start the server first.");
+		String cmdRaw = txtCommand.getText();
+		if (cmdRaw == null) {
+			cmdRaw = "";
 		}
-		switch (cmd.trim().toLowerCase()) {
-		// Handle different commands
+
+		String cmd = cmdRaw.trim().toLowerCase();
+
+		switch (cmd) {
 		case "/start":
+			// Can be used even when server is not running
 			btnStart(event);
 			break;
+
 		case "/stop":
-			btnStop(event);
+			if (BistroServerGUI.server == null || !BistroServerGUI.server.isListening()) {
+				displayMessageToConsole("Server is not running. Please start the server first.");
+			} else {
+				btnStop(event);
+			}
 			break;
+
 		case "/clear":
 			btnClear(event);
 			break;
+
 		case "/connections":
-			BistroServerGUI.server.showAllConnections();
+			if (BistroServerGUI.server == null || !BistroServerGUI.server.isListening()) {
+				displayMessageToConsole("Server is not running. Please start the server first.");
+			} else {
+				BistroServerGUI.server.showAllConnections();
+			}
 			break;
+
 		case "/help":
-			displayMessageToConsole(
-					"Available commands:\n/start "
-					+ "- Start the server\n/stop "
-					+ "- Stop the server\n/clear "
-					+ "- Clear the console log\n/connections "
-					+ "- Show all active client connections\n/help "
-					+ "- Show this help message");
+			displayMessageToConsole("Available commands:\n" 
+					+ "/start - Start the server\n"
+					+ "/stop - Stop the server\n" 
+					+ "/clear - Clear the console log\n"
+					+ "/connections - Show all active client connections\n" 
+					+ "/help - Show this help message");
 			break;
+
 		case "":
 			displayMessageToConsole("No command entered. Type /help for a list of available commands.");
 			break;
+
 		default:
-			displayMessageToConsole("Unknown command: " + cmd + ". Type /help for a list of available commands.");
+			displayMessageToConsole("Unknown command: " + cmdRaw + ". Type /help for a list of available commands.");
 			break;
 		}
+
+		txtCommand.clear();
 	}
 
-	
 	/*
 	 * Method to display a message in the console log area.
 	 * 
 	 * @param message The message to be displayed.
 	 */
 	public void displayMessageToConsole(String message) {
-		if(Platform.isFxApplicationThread()) {
+		if (Platform.isFxApplicationThread()) {
 			txtLog.appendText(">" + message + "\n");
 		} else {
 			Platform.runLater(() -> txtLog.appendText(">" + message + "\n"));

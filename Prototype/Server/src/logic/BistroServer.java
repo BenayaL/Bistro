@@ -1,19 +1,10 @@
 package logic;
 
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import clientserver.Message;
 import entities.Order;
 import gui.controllers.ServerConsoleController;
-import javafx.event.Event;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.paint.Color;
-import javafx.stage.Stage;
 import ocsf.server.AbstractServer;
 import ocsf.server.ConnectionToClient;
 
@@ -24,7 +15,7 @@ import ocsf.server.ConnectionToClient;
 public class BistroServer extends AbstractServer {
 
 	private ServerConsoleController serverConsole; // Reference to the server console controller
-	
+
 	/*
 	 * Constructor for BistroServer class
 	 */
@@ -36,7 +27,8 @@ public class BistroServer extends AbstractServer {
 	/*
 	 * Method to handle messages received from clients.
 	 * 
-	 * @param msg    The message received from the client.
+	 * @param msg The message received from the client.
+	 * 
 	 * @param client The connection to the client that sent the message.
 	 */
 	@Override
@@ -53,7 +45,7 @@ public class BistroServer extends AbstractServer {
 			// Handle different message IDs:
 			try {
 				switch (messageId) {
-				
+
 				// case client requests the full orders list.
 				case "getOrdersList":
 					// Retrieve all orders from the database:
@@ -64,13 +56,14 @@ public class BistroServer extends AbstractServer {
 							+ allOrders.size();
 					serverConsole.displayMessageToConsole(messageToDisplay);
 					return;
-					
+
 				// case client requests to update an order status.
 				case "updateOrderStatus":
 					// The client sends an Order object as the data field:
 					Order orderToUpdate = (Order) messageObj.getData();
-					//check if date is taken:
-					if (!BistroDataBase_Controller.isDateAvailable(orderToUpdate.getOrderDate(), orderToUpdate.getConfirmationCode())) {
+					// check if date is taken:
+					if (!BistroDataBase_Controller.isDateAvailable(orderToUpdate.getOrderDate(),
+							orderToUpdate.getConfirmationCode())) {
 						client.sendToClient(new Message("dateNotAvailable", null));
 						// Log the action:
 						messageToDisplay = client + " attempted to update order with confirmation code: "
@@ -95,7 +88,7 @@ public class BistroServer extends AbstractServer {
 						serverConsole.displayMessageToConsole(messageToDisplay);
 					}
 					return;
-					
+
 				// case client request an order by confirmation code.
 				case "getOrderByConfirmationCode":
 					// The client sends an integer confirmation code as the data field:
@@ -106,22 +99,22 @@ public class BistroServer extends AbstractServer {
 					messageToDisplay = client + " requested order with confirmation code: " + confirmationCode;
 					serverConsole.displayMessageToConsole(messageToDisplay);
 					return;
-					
+
 				case "connect":
 					// Log the connection:
 					messageToDisplay = client + " has connected.";
 					serverConsole.displayMessageToConsole(messageToDisplay);
-					client.sendToClient(new Message("connectionDisplayed",null));
+					client.sendToClient(new Message("connectionDisplayed", null));
 					return;
-					
+
 				case "disconnect":
 					// Log the disconnection:
 					messageToDisplay = client + " has disconnected.";
 					serverConsole.displayMessageToConsole(messageToDisplay);
 					client.close(); // Close the client connection
 					return;
-					
-				// Default case when client request and unknownCommand.	
+
+				// Default case when client request and unknownCommand.
 				default:
 					client.sendToClient(new Message("unknownCommand", "Unknown command: " + messageId));
 					// Log the action:
@@ -134,8 +127,7 @@ public class BistroServer extends AbstractServer {
 			}
 		}
 	}
-	
-	
+
 	/*
 	 * Method called when the server starts listening for client connections.
 	 */
@@ -149,8 +141,7 @@ public class BistroServer extends AbstractServer {
 			serverConsole.displayMessageToConsole("Failed to connect to database");
 		}
 	}
-	
-	
+
 	/*
 	 * Method called when the server stops to close the database connection.
 	 */
@@ -159,7 +150,6 @@ public class BistroServer extends AbstractServer {
 		serverConsole.displayMessageToConsole("Server stopped");
 		BistroDataBase_Controller.closeConnection();
 	}
-	
 
 	/*
 	 * Method to receive all client connections from abstract server and display
